@@ -1,0 +1,95 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="relative mt-auto w-full border-t border-white/10 bg-graphite-900/95 text-brandText-secondary overflow-hidden shrink-0">
+  
+  {/* Ambient Optical Glow in footer */}
+  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-violet-deep/15 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+  <div class="max-w-6xl mx-auto px-4 py-12 md:py-16 pb-24 md:pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
+      
+      <!-- Column 1: Brand Info -->
+      <div class="md:col-span-2 space-y-4">
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/icons/icon32.png" alt="Flowmator" class="w-7 h-7 rounded-lg shadow" />
+          <span class="font-bold text-lg text-white tracking-tight">Flowmator</span>
+        </a>
+        <p class="text-xs text-brandText-tertiary leading-relaxed max-w-sm">
+          Bulk Flow AI prompt automator for visual storytellers and filmmakers. Intelligent queue management, canvas tile verification, rate-limit cool-off, and storyboard continuity protection.
+        </p>
+        <div class="flex items-center gap-2 pt-1">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            Manifest V3 Ready
+          </span>
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono text-brandText-tertiary bg-white/5 border border-white/10">
+            100% Client-Side
+          </span>
+        </div>
+      </div>
+
+      <!-- Column 2: Product -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-semibold text-white uppercase tracking-wider">Product</h4>
+        <ul class="space-y-2 text-xs">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li><a href="/features" class="hover:text-white transition-colors">Features Deep Dive</a></li>
+          <li><a href="/setup" class="hover:text-white transition-colors">Installation Guide</a></li>
+          <li><a href="/changelog" class="hover:text-white transition-colors">Changelog & Releases</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Journal & Guides -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-semibold text-white uppercase tracking-wider">Journal</h4>
+        <ul class="space-y-2 text-xs">
+          <li><a href="/blog" class="hover:text-white transition-colors">All Publications</a></li>
+          <li><a href="/blog/category/google-flow-ai" class="hover:text-white transition-colors">Google Flow AI</a></li>
+          <li><a href="/blog/category/prompt-automation" class="hover:text-white transition-colors">Prompt Automation</a></li>
+          <li><a href="/blog/category/ai-storyboarding" class="hover:text-white transition-colors">AI Storyboarding</a></li>
+          <li><a href="/blog/category/technical-guides" class="hover:text-white transition-colors">Technical Guides</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Documentation -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-semibold text-white uppercase tracking-wider">Docs</h4>
+        <ul class="space-y-2 text-xs">
+          <li><a href="/how-it-works" class="hover:text-white transition-colors">How It Works</a></li>
+          <li><a href="/documentation" class="hover:text-white transition-colors">Documentation Hub</a></li>
+          <li><a href="/documentation/safe-sequence-mode" class="hover:text-white transition-colors">Safe Sequence Mode</a></li>
+          <li><a href="/documentation/turbo-mode" class="hover:text-white transition-colors">Turbo Interval Mode</a></li>
+          <li><a href="/documentation/troubleshooting" class="hover:text-white transition-colors">Troubleshooting</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 5: Legal & Support -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-semibold text-white uppercase tracking-wider">Trust</h4>
+        <ul class="space-y-2 text-xs">
+          <li><a href="/support" class="hover:text-white transition-colors">Support Center</a></li>
+          <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms" class="hover:text-white transition-colors">Terms of Use</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Disclaimer & Copyright -->
+    <div class="mt-12 pt-8 border-t border-white/10 text-[11px] text-brandText-tertiary leading-relaxed space-y-3">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span>© {currentYear} Flowmator. Built for creators who work one frame at a time — at scale.</span>
+        <div class="flex items-center gap-4">
+          <a href="/privacy" class="hover:underline">Privacy</a>
+          <a href="/terms" class="hover:underline">Terms</a>
+          <a href="/support" class="hover:underline">Support</a>
+        </div>
+      </div>
+      <p class="text-[10px] text-brandText-tertiary/80 text-center sm:text-left">
+        <strong>Disclaimer:</strong> Flowmator is an independent workflow automation extension for creators and is not affiliated with, endorsed by, or sponsored by Google LLC or Alphabet Inc. "Google Flow", "Google Labs", and related names or logos are trademarks of their respective owners.
+      </p>
+    </div>
+  </div>
+</footer>

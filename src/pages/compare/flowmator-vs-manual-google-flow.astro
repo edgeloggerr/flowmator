@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Check, X, Shield, Clock, Zap, ArrowRight, CheckCircle2 } from 'lucide-react';
+
+const comparisons = [
+  {
+    feature: "Input Dispatch Method",
+    manual: "Manual keyboard typing",
+    generic: "Synthesized DOM click (often blocked by ProseMirror)",
+    flowmator: "Chromium DevTools Protocol (CDP v1.3) with isTrusted: true"
+  },
+  {
+    feature: "Canvas Result Verification",
+    manual: "Creator watches screen constantly",
+    generic: "Blind fixed timer (e.g. sleep 30s)",
+    flowmator: "Active DOM snapshot & media-id diffing (90s polling)"
+  },
+  {
+    feature: "Error Tile & Safety Flag Handling",
+    manual: "Manual error reading & retyping",
+    generic: "Ignores errors, advances to next prompt (breaks sequence)",
+    flowmator: "Detects <flow-error-tile>, extracts error text & halts queue"
+  },
+  {
+    feature: "Google Rate-Limit Handling",
+    manual: "Manual waiting",
+    generic: "Triggers repeated 429 quota bans",
+    flowmator: "Automatic 12s cool-off countdown before retrying"
+  },
+  {
+    feature: "Storyboard Continuity Protection",
+    manual: "High human effort",
+    generic: "None (leaves missing frames)",
+    flowmator: "Sequence Protector halts queue & plays audio chime"
+  },
+  {
+    feature: "Automated Result Saving",
+    manual: "Right click > Save image as... for every frame",
+    generic: "None or broken canvas scraping",
+    flowmator: "Automatic native downloads with timestamps"
+  },
+  {
+    feature: "Data Privacy & Telemetry",
+    manual: "Direct to Google",
+    generic: "Varies (often unknown third-party analytics)",
+    flowmator: "100% Client-side (chrome.storage.local), zero telemetry"
+  }
+];
+---
+
+<Layout
+  title="Flowmator vs Manual Prompting in Google Flow AI | Comprehensive Comparison"
+  description="Compare Flowmator against manual copy-pasting and generic browser timers for Google Flow AI. Discover how canvas verification and CDP input protect storyboard continuity."
+>
+  <div class="px-4 py-12 md:py-20 max-w-5xl mx-auto space-y-14">
+    
+    <div class="text-center space-y-4 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-aqua-liquid">
+        Workflow Comparison
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Flowmator vs Manual Google Flow Generation
+      </h1>
+      <p class="text-sm sm:text-base text-brandText-secondary leading-relaxed">
+        Why visual creators and storyboard artists replace manual babysitting and generic auto-clickers with verification-driven automation.
+      </p>
+    </div>
+
+    {/* Comparison Table */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/15 overflow-x-auto shadow-2xl">
+      <table class="w-full text-left text-xs md:text-sm">
+        <thead>
+          <tr class="border-b border-white/10 text-white font-semibold">
+            <th class="py-4 pr-4">Automation Capability</th>
+            <th class="py-4 px-4 text-brandText-tertiary">Manual Input</th>
+            <th class="py-4 px-4 text-brandText-tertiary">Generic Auto-Clicker</th>
+            <th class="py-4 pl-4 text-aqua-liquid font-bold">Flowmator (Safe Mode)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5 text-brandText-secondary">
+          {comparisons.map((row) => (
+            <tr class="hover:bg-white/5 transition-colors">
+              <td class="py-4 pr-4 font-medium text-white">{row.feature}</td>
+              <td class="py-4 px-4 text-brandText-tertiary">{row.manual}</td>
+              <td class="py-4 px-4 text-brandText-tertiary">{row.generic}</td>
+              <td class="py-4 pl-4 font-semibold text-emerald-300 bg-emerald-500/5 rounded-lg">
+                {row.flowmator}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    {/* Summary Card */}
+    <div class="p-8 rounded-3xl glass-tier3 border border-white/15 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="space-y-1">
+        <h3 class="text-lg font-bold text-white">Experience Continuous AI Sequences</h3>
+        <p class="text-xs text-brandText-secondary">Install the unpacked extension in Chrome and run your first verified queue in minutes.</p>
+      </div>
+      <a href="/setup" class="glass-btn-primary px-6 py-3 text-xs font-semibold shrink-0 flex items-center gap-2">
+        <span>Get Flowmator Free</span>
+        <ArrowRight className="w-4 h-4" />
+      </a>
+    </div>
+
+  </div>
+</Layout>

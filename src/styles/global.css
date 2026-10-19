@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-deep: #0C1018;
+    --bg-slate: #111824;
+    --bg-elevated: #192331;
+    --violet-electric: #8065FF;
+    --violet-deep: #6047EA;
+    --aqua-liquid: #69E7E1;
+    --cyan-cool: #79D9FF;
+    --mint-soft: #76E3B1;
+    --frosted-white: #F5F7FF;
+    --text-primary: #F6F7FB;
+    --text-secondary: #B6C0CF;
+    --text-tertiary: #8995A7;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #0C1018;
+    color: #F6F7FB;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    height: 100%;
+  }
+
+  body {
+    background-color: #0C1018;
+    color: #F6F7FB;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Custom Sleek Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(12, 16, 24, 0.6);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(128, 101, 255, 0.25);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(128, 101, 255, 0.5);
+  }
+}
+
+/* ============================================================
+   LIQUID GLASS MATERIAL TIERS
+============================================================ */
+
+/* Tier 1: Atmospheric Glass (Hero environments, large background sheets) */
+.glass-tier1 {
+  background: rgba(17, 24, 36, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Tier 2: Interface Glass (Navigation, content cards, feature panels) */
+.glass-tier2 {
+  background: rgba(25, 35, 49, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  position: relative;
+}
+
+.glass-tier2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(128, 101, 255, 0.15) 40%, rgba(105, 231, 225, 0.05) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Tier 3: Tactile Glass (Buttons, toggles, active chips, inputs) */
+.glass-tier3 {
+  background: linear-gradient(180deg, rgba(33, 46, 64, 0.8) 0%, rgba(20, 28, 40, 0.9) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.28), inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-tier3:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45), 0 0 16px rgba(128, 101, 255, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.glass-tier3:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Primary Glass Action Button */
+.glass-btn-primary {
+  background: linear-gradient(135deg, #8065FF 0%, #6047EA 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(128, 101, 255, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.45), inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(128, 101, 255, 0.6), 0 0 20px rgba(105, 231, 225, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+  filter: brightness(1.08);
+}
+
+.glass-btn-primary:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 0 3px 12px rgba(128, 101, 255, 0.4), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Secondary Glass Action Button */
+.glass-btn-secondary {
+  background: rgba(25, 35, 49, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  color: #F6F7FB;
+  font-weight: 500;
+  border-radius: 9999px;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(33, 46, 64, 0.85);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), 0 0 14px rgba(105, 231, 225, 0.2);
+}
+
+.glass-btn-secondary:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* Glass Inputs & Recessed Troughs */
+.glass-input {
+  background: rgba(12, 16, 24, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6), inset 0 -1px 1px rgba(255, 255, 255, 0.05);
+  color: #F6F7FB;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: rgba(128, 101, 255, 0.6);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7), 0 0 12px rgba(128, 101, 255, 0.35);
+}
+
+/* Scrim Plate for Perfect Readability */
+.bg-scrim {
+  background: rgba(12, 16, 24, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Ambient Optical Glows */
+.ambient-glow-violet {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(128, 101, 255, 0.16) 0%, rgba(96, 71, 234, 0.04) 50%, transparent 70%);
+  pointer-events: none;
+  filter: blur(60px);
+  z-index: 0;
+}
+
+.ambient-glow-aqua {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(105, 231, 225, 0.14) 0%, rgba(121, 217, 255, 0.03) 50%, transparent 70%);
+  pointer-events: none;
+  filter: blur(60px);
+  z-index: 0;
+}

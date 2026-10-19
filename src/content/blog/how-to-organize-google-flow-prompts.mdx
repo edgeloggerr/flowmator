@@ -1,0 +1,85 @@
+---
+title: "How to Organize and Structure Google Flow AI Prompt Queues"
+description: "Master prompt organization strategies for Google Flow AI. Learn how to format multi-scene CSV spreadsheets, structure camera angles, and build reusable prompt templates."
+excerpt: "A practical guide to organizing large-scale Google Flow prompt sequences using structured CSV spreadsheets and camera progression chains."
+publishedDate: "2026-10-18"
+author: "Flowmator Editorial Team"
+category: "Google Flow AI"
+tags:
+  - Prompt Organization
+  - Google Flow AI
+  - CSV Queues
+  - Storyboarding
+readingTime: 6
+featured: false
+relatedSlugs:
+  - google-flow-ai-prompt-automation-guide
+  - shot-list-to-prompt-sequence-filmmaking
+---
+
+## How should you organize prompt queues for Google Flow AI?
+
+**To organize prompt queues effectively for Google Flow AI**, group your prompts into structured, numbered shot sequences using consistent stylistic anchors (lighting, film stock, aspect ratio) while varying only the focal subject and camera angle. Storing these sequences in a standardized CSV format allows you to import entire script scenes directly into automated execution queues.
+
+Unstructured prompt lists frequently produce disconnected images with clashing aesthetics. A disciplined organizational framework guarantees visual consistency across multi-shot sequences.
+
+---
+
+## 1. The Anatomy of a Sequential Prompt
+
+Every prompt in a storyboard sequence should contain three distinct structural layers:
+
+1. **The Sequence Anchor (Fixed across all shots):** Defines the art style, color grade, and environmental context. Example: `monochrome film noir, 1940s, rain streaks, 35mm grain, anamorphic lens`.
+2. **The Camera Grammar (Progressive):** Explicitly specifies the lens distance and camera movement. Example: `wide establishing shot`, `medium tracking shot`, or `extreme close-up`.
+3. **The Narrative Action (Dynamic):** The specific subject interaction occurring within this particular frame. Example: `detective inspecting classified telegram under desk lamp`.
+
+By locking the Sequence Anchor and progressing the Camera Grammar, Google Flow AI maintains visual coherence between successive frames.
+
+---
+
+## 2. Formatting Queues Using CSV Spreadsheets
+
+Managing dozens of prompts inside a single text document often leads to formatting mistakes. A standard CSV spreadsheet format provides clear visibility over scene IDs and prompt text.
+
+Here is the recommended CSV format supported by Flowmator:
+
+```csv
+Index,SceneID,PromptText
+1,SCENE_01_A,"1. Establishing shot, rainy detective office window at midnight, neon Venetian blinds casting shadows, monochrome film noir style"
+2,SCENE_01_B,"2. Medium close-up, rugged detective in trenchcoat examining classified telegram under dim desk lamp, high contrast chiaroscuro"
+3,SCENE_01_C,"3. Low-angle tracking shot, trenchcoat figure stepping out into wet reflective cobblestone street, dark alleys, dramatic backlight"
+4,SCENE_01_D,"4. Climax over-the-shoulder shot, silhouette confrontation beneath street lamp with smoke rising from subway grate, 35mm film grain"
+```
+
+### Tips for CSV Formatting:
+- Always wrap prompt texts containing commas in standard double quotes (`"`).
+- Omit line breaks inside individual spreadsheet cells.
+- Keep a master template sheet with your favorite cinematic styles.
+
+---
+
+## 3. Delimiter-Based Pasting (`@@@NEXT@@@`)
+
+If you prefer drafting prompts inside a Markdown script editor (such as Obsidian, Notion, or Final Draft), you can separate prompts using Flowmator's custom delimiter:
+
+```text
+A panoramic aerial shot of Neo-Shinjuku 2099, holographic billboards reflecting off wet streets, cyan volumetric lighting
+
+@@@NEXT@@@
+
+A street-level medium shot of a cyborg courier weaving through a crowded night market on a monowheel, motion blur
+```
+
+Flowmator automatically parses this delimiter when you click **Add to Queue**, splitting the text into independent queue items with zero manual formatting needed.
+
+---
+
+## 4. In-Flight Prompt Editing
+
+Even the best-planned prompt queues occasionally need adjustments. If Google Flow renders a composition that slightly drifts from your intended direction, you do not need to delete and recreate the queue:
+
+- In the Flowmator side panel, failed or paused items display an inline ✏️ **Edit** button.
+- Click the pencil icon to modify prompt wording directly.
+- Click 🔄 **Retry** to immediately test the revised prompt without losing your place in the overall sequence.
+
+Learn more about queue controls in our [Features Deep Dive](/features#queue).

@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StoryboardCarousel from '../../components/StoryboardCarousel';
+import { Film, CheckCircle2, Shield, ArrowRight, Layers, Camera } from 'lucide-react';
+---
+
+<Layout
+  title="AI Storyboard Automation for Google Flow AI | Flowmator"
+  description="Automate cinematic multi-shot storyboards in Google Flow AI with zero broken sequence frames. Preserve scene continuity across camera angles, characters, and lighting."
+>
+  <div class="px-4 py-12 md:py-20 max-w-5xl mx-auto space-y-16">
+    
+    <div class="text-center space-y-4 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-emerald-400">
+        Creator Use Case
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Cinematic AI Storyboard Sequences
+      </h1>
+      <p class="text-sm sm:text-base text-brandText-secondary leading-relaxed">
+        How directors, animators, and visual storytellers use Flowmator's Safe Sequence Mode to generate unbroken multi-shot narrative scenes on Google Flow AI.
+      </p>
+    </div>
+
+    {/* Storyboard Showcase Component */}
+    <div>
+      <StoryboardCarousel client:load />
+    </div>
+
+    {/* Why Storyboarding Needs Continuity Protection */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-10 border border-white/15 space-y-6">
+      <h2 class="text-2xl font-bold text-white">The Challenge of Sequential Storytelling in AI</h2>
+      <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+        Unlike standalone concept art, storyboarding is inherently sequential. Shot 02 (Medium tracking shot) relies on the visual cues and context established in Shot 01 (Wide establishing shot).
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+        <div class="p-4 rounded-2xl bg-graphite-900/60 border border-white/5 space-y-2">
+          <Camera className="w-5 h-5 text-aqua-liquid" />
+          <h3 class="text-sm font-bold text-white">Camera Progression</h3>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            Move seamlessly from extreme wide angles to over-the-shoulder dialogues without queue desynchronization.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-graphite-900/60 border border-white/5 space-y-2">
+          <Shield className="w-5 h-5 text-emerald-400" />
+          <h3 class="text-sm font-bold text-white">Zero Missing Frames</h3>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            If Google Flow flags a frame for moderation or rate limiting, the queue pauses with an audio chime so you can edit the prompt inline.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-graphite-900/60 border border-white/5 space-y-2">
+          <Layers className="w-5 h-5 text-violet-electric" />
+          <h3 class="text-sm font-bold text-white">Automated Archival</h3>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            Every rendered scene is timestamped and saved sequentially to your disk for instant import into Premiere, DaVinci, or storyboard software.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* CTA Banner */}
+    <div class="p-8 rounded-3xl glass-tier3 border border-white/15 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="space-y-1">
+        <h3 class="text-lg font-bold text-white">Ready to automate your storyboard sequences?</h3>
+        <p class="text-xs text-brandText-secondary">Install Flowmator in Chrome Developer Mode and run your first sequence.</p>
+      </div>
+      <a href="/setup" class="glass-btn-primary px-6 py-3 text-xs font-semibold shrink-0 flex items-center gap-2">
+        <span>Get Started Now</span>
+        <ArrowRight className="w-4 h-4" />
+      </a>
+    </div>
+
+  </div>
+</Layout>

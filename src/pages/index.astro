@@ -1,0 +1,421 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroProductPreview from '../components/HeroProductPreview';
+import ModeComparisonIsland from '../components/ModeComparisonIsland';
+import ArchitectureDiagramIsland from '../components/ArchitectureDiagramIsland';
+import StoryboardCarousel from '../components/StoryboardCarousel';
+import { Shield, Zap, Eye, RefreshCw, Film, Database, ArrowRight, CheckCircle2, AlertTriangle, Layers, Clock, Terminal } from 'lucide-react';
+import { generateFAQSchema, SITE_CONFIG } from '../utils/seo';
+
+const faqs = [
+  {
+    question: "What is Flowmator?",
+    answer: "Flowmator is a lightweight, 100% client-side Chrome Extension that automates bulk prompt queues in Google Flow AI. It provides intelligent sequencing, DOM-level canvas result verification, automatic rate-limit cool-off delays, and storyboard continuity safeguards."
+  },
+  {
+    question: "Is Flowmator an official Google product?",
+    answer: "No. Flowmator is an independent workflow automation extension built by and for AI visual creators. It is not affiliated with, endorsed by, or sponsored by Google LLC or Alphabet Inc."
+  },
+  {
+    question: "How does Safe Sequence Mode work?",
+    answer: "Safe Sequence Mode snapshots existing image media-ids and error tiles before triggering a prompt. It actively polls the canvas for up to 90 seconds. If a new image tile appears, it marks the frame as verified and advances. If an error tile or rate limit is detected, it enters a cool-off delay and retries, halting the sequence if retries are exhausted to prevent missing frames."
+  },
+  {
+    question: "What is the difference between Safe Sequence and Turbo Mode?",
+    answer: "Safe Sequence Mode verifies every generated image tile before proceeding and halts on error to preserve narrative story sequences. Turbo Interval Mode dispatches prompts at randomized time intervals (e.g., 25–45 seconds) for rapid bulk batching without strict frame verification."
+  },
+  {
+    question: "Does Flowmator guarantee every generation will succeed?",
+    answer: "No. Third-party AI platforms like Google Flow can experience cloud outages, server congestion, or content safety flag rejections. Flowmator guarantees that when an error occurs, your queue will pause cleanly with an audio chime and alert so your storyboard remains uncorrupted."
+  },
+  {
+    question: "Does Flowmator collect personal data or prompts?",
+    answer: "Zero telemetry or tracking. All prompt queues, retry settings, and session metrics are stored strictly inside your browser's local storage (chrome.storage.local). No prompts, images, or account details are ever transmitted to external servers."
+  }
+];
+
+const schema = {
+  ...generateFAQSchema(faqs),
+  headline: "Flowmator — Bulk Flow AI Prompt Automator",
+  description: SITE_CONFIG.description
+};
+---
+
+<Layout title="Flowmator — Bulk Flow AI Prompt Automator | Intelligent Storyboard Sequences" schema={schema}>
+
+  {/* SECTION 1: HERO */}
+  <section class="relative px-4 pt-12 pb-20 md:pt-16 md:pb-28">
+    <div class="max-w-5xl mx-auto text-center space-y-6">
+      
+      {/* Eyebrow Pill */}
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-tier3 text-xs font-semibold tracking-wider uppercase border border-white/15 shadow-md">
+        <span class="w-2 h-2 rounded-full bg-violet-electric animate-pulse"></span>
+        <span class="text-brandText-secondary">AI Creative Workflow Automation</span>
+        <span class="text-aqua-liquid font-mono">v1.0</span>
+      </div>
+
+      {/* Main Headline */}
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08]">
+        Your prompts. <br />
+        <span class="bg-gradient-to-r from-violet-electric via-cyan-400 to-aqua-liquid bg-clip-text text-transparent">
+          In perfect sequence.
+        </span>
+      </h1>
+
+      {/* Supporting Copy */}
+      <p class="text-base sm:text-lg text-brandText-secondary max-w-2xl mx-auto leading-relaxed">
+        Automate bulk prompt workflows in Google Flow AI with intelligent sequencing, DOM-level result verification, rate-limit cool-off, and storyboard continuity protection.
+      </p>
+
+      {/* Action CTAs */}
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+        <a
+          href="/setup"
+          class="glass-btn-primary px-7 py-3.5 text-sm flex items-center gap-2 shadow-xl hover:scale-105 transition-all"
+        >
+          <span>Get Flowmator Free</span>
+          <ArrowRight className="w-4 h-4" />
+        </a>
+
+        <a
+          href="/how-it-works"
+          class="glass-btn-secondary px-6 py-3.5 text-sm flex items-center gap-2 hover:border-white/30"
+        >
+          <span>Explore How It Works</span>
+        </a>
+      </div>
+
+      <div class="text-xs text-brandText-tertiary pt-1">
+        Built for creators who work one frame at a time — at scale. Zero telemetry.
+      </div>
+
+      {/* Hero Product Window Component */}
+      <div class="pt-8 sm:pt-12">
+        <HeroProductPreview client:load />
+      </div>
+
+    </div>
+  </section>
+
+  {/* SECTION 2: THE PROBLEM */}
+  <section class="relative px-4 py-16 md:py-24 border-t border-white/5 bg-graphite-900/40">
+    <div class="max-w-5xl mx-auto space-y-12">
+      
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <span class="text-xs font-mono font-semibold text-aqua-liquid uppercase tracking-wider">The Creation Bottleneck</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          Bulk generation shouldn’t mean losing control.
+        </h2>
+        <p class="text-sm text-brandText-secondary">
+          Running complex multi-shot prompts on Google Flow without verified feedback introduces constant friction.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Problem Card 1 */}
+        <div class="glass-tier2 rounded-2xl p-6 border border-white/10 space-y-3 relative overflow-hidden">
+          <div class="w-10 h-10 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400">
+            <Clock className="w-5 h-5" />
+          </div>
+          <h3 class="text-lg font-bold text-white">Blind Automation</h3>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            Sending prompts on static timers advances before previous results finish rendering, causing prompts to pile up, fail silently, or get discarded by Google Flow.
+          </p>
+        </div>
+
+        {/* Problem Card 2 */}
+        <div class="glass-tier2 rounded-2xl p-6 border border-white/10 space-y-3 relative overflow-hidden">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
+            <AlertTriangle className="w-5 h-5" />
+          </div>
+          <h3 class="text-lg font-bold text-white">Broken Sequences</h3>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            A single failed scene or safety policy flag desynchronizes entire storyboards. You discover hours later that Shot #3 failed, leaving subsequent shots out of narrative context.
+          </p>
+        </div>
+
+        {/* Problem Card 3 */}
+        <div class="glass-tier2 rounded-2xl p-6 border border-white/10 space-y-3 relative overflow-hidden">
+          <div class="w-10 h-10 rounded-xl bg-violet-500/15 border border-violet-500/30 flex items-center justify-center text-violet-300">
+            <Layers className="w-5 h-5" />
+          </div>
+          <h3 class="text-lg font-bold text-white">Unclear Progress</h3>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            Without DOM-level status verification, creators are forced to manually watch the browser tab instead of focusing on creative direction and script development.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  {/* SECTION 3: THE SOLUTION */}
+  <section class="relative px-4 py-16 md:py-24 border-t border-white/5">
+    <div class="max-w-5xl mx-auto space-y-12">
+      
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <span class="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">The Flowmator Workflow</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          From prompt queue to verified workflow.
+        </h2>
+        <p class="text-sm text-brandText-secondary">
+          A closed-loop execution lifecycle that guarantees real canvas image confirmation before queue progression.
+        </p>
+      </div>
+
+      {/* Horizontal Pipeline Steps */}
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {[
+          { step: "01", title: "Prepare", desc: "Paste prompts or import CSV spreadsheet" },
+          { step: "02", title: "Snapshot", desc: "Catalog existing canvas media-ids & tiles" },
+          { step: "03", title: "Submit", desc: "Inject via CDP hardware-level events" },
+          { step: "04", title: "Verify", desc: "Active DOM polling for verified result tile" },
+          { step: "05", title: "Recover", desc: "Rate-limit cool-off delay & auto-retry" },
+          { step: "06", title: "Continue", desc: "Smooth post-gen pause & next scene" },
+        ].map((item) => (
+          <div class="glass-tier2 p-4 rounded-2xl border border-white/10 space-y-2">
+            <span class="text-xs font-mono font-bold text-aqua-liquid">{item.step}</span>
+            <h4 class="text-sm font-bold text-white">{item.title}</h4>
+            <p class="text-[11px] text-brandText-secondary leading-snug">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  {/* SECTION 4: FEATURE SHOWCASE */}
+  <section class="relative px-4 py-16 md:py-24 border-t border-white/5 bg-graphite-900/30">
+    <div class="max-w-5xl mx-auto space-y-12">
+      
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <span class="text-xs font-mono font-semibold text-violet-electric uppercase tracking-wider">Engine Capabilities</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          Precision-engineered creative automation.
+        </h2>
+        <p class="text-sm text-brandText-secondary">
+          Every feature in Flowmator is built around verification, safety, and creator control.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        {/* Feature 1 */}
+        <div class="glass-tier2 p-6 md:p-8 rounded-3xl border border-white/10 space-y-4">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-300">
+            <Shield className="w-5 h-5" />
+          </div>
+          <h3 class="text-xl font-bold text-white">Safe Sequence Mode</h3>
+          <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+            Captures a baseline canvas snapshot before dispatching. Actively monitors for newly appeared image elements and catches <code class="text-emerald-300 font-mono text-xs">flow-error-tile</code> nodes, halting execution before gaps occur.
+          </p>
+          <a href="/documentation/safe-sequence-mode" class="text-xs font-semibold text-aqua-liquid hover:underline inline-flex items-center gap-1">
+            Read Safe Sequence Architecture ➔
+          </a>
+        </div>
+
+        {/* Feature 2 */}
+        <div class="glass-tier2 p-6 md:p-8 rounded-3xl border border-white/10 space-y-4">
+          <div class="w-10 h-10 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300">
+            <Zap className="w-5 h-5" />
+          </div>
+          <h3 class="text-xl font-bold text-white">Turbo Interval Mode</h3>
+          <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+            Sends queued prompts continuously at randomized interval ranges (e.g. 25s–45s). Designed for rapid bulk idea exploration where order is secondary to raw generation throughput.
+          </p>
+          <a href="/documentation/turbo-mode" class="text-xs font-semibold text-aqua-liquid hover:underline inline-flex items-center gap-1">
+            Read Turbo Interval Specs ➔
+          </a>
+        </div>
+
+        {/* Feature 3 */}
+        <div class="glass-tier2 p-6 md:p-8 rounded-3xl border border-white/10 space-y-4">
+          <div class="w-10 h-10 rounded-2xl bg-violet-500/20 border border-violet-500/40 flex items-center justify-center text-violet-300">
+            <RefreshCw className="w-5 h-5" />
+          </div>
+          <h3 class="text-xl font-bold text-white">Automatic Retry & Cool-off</h3>
+          <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+            Automatically cools down for 12 seconds when Google rate limits trigger, clearing temporary traffic throttles before re-executing the same scene up to your configured retry ceiling.
+          </p>
+          <a href="/features#recovery" class="text-xs font-semibold text-aqua-liquid hover:underline inline-flex items-center gap-1">
+            Explore Recovery Mechanics ➔
+          </a>
+        </div>
+
+        {/* Feature 4 */}
+        <div class="glass-tier2 p-6 md:p-8 rounded-3xl border border-white/10 space-y-4">
+          <div class="w-10 h-10 rounded-2xl bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-300">
+            <Database className="w-5 h-5" />
+          </div>
+          <h3 class="text-xl font-bold text-white">CSV Import & Queue Management</h3>
+          <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+            Easily upload formatted CSV spreadsheets containing dozens of production prompts. Reorder, edit prompt text inline, clear completed sets, or export archives anytime.
+          </p>
+          <a href="/features#queue" class="text-xs font-semibold text-aqua-liquid hover:underline inline-flex items-center gap-1">
+            Explore Queue Tools ➔
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  {/* SECTION 5: INTERACTIVE MODE COMPARISON */}
+  <section class="relative px-4 py-16 md:py-24 border-t border-white/5">
+    <div class="max-w-5xl mx-auto space-y-10">
+      
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <span class="text-xs font-mono font-semibold text-aqua-liquid uppercase tracking-wider">Dual Automation Engines</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          Two modes. Two different workflows.
+        </h2>
+        <p class="text-sm text-brandText-secondary">
+          Switch between verified sequence protection and high-throughput timed batching with a single click.
+        </p>
+      </div>
+
+      <ModeComparisonIsland client:load />
+
+    </div>
+  </section>
+
+  {/* SECTION 6: ENGINEERING CREDIBILITY */}
+  <section class="relative px-4 py-16 md:py-24 border-t border-white/5 bg-graphite-900/50">
+    <div class="max-w-5xl mx-auto space-y-10">
+      
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <span class="text-xs font-mono font-semibold text-violet-electric uppercase tracking-wider">Architecture Deep-Dive</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          Not just a timer. A verification-driven workflow.
+        </h2>
+        <p class="text-sm text-brandText-secondary">
+          Inspect how Flowmator communicates with Chromium DevTools Protocol, Google Flow ProseMirror inputs, and DOM verification layers.
+        </p>
+      </div>
+
+      <ArchitectureDiagramIsland client:load />
+
+    </div>
+  </section>
+
+  {/* SECTION 7: STORYBOARD TEMPLATES */}
+  <section class="relative px-4 py-16 md:py-24 border-t border-white/5">
+    <div class="max-w-5xl mx-auto space-y-10">
+      
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <span class="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider">Curated Creative Presets</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          Ready-to-use storyboard sequences.
+        </h2>
+        <p class="text-sm text-brandText-secondary">
+          Explore production prompt chains built for continuity across camera angles, character consistency, and atmospheric lighting.
+        </p>
+      </div>
+
+      <StoryboardCarousel client:load />
+
+    </div>
+  </section>
+
+  {/* SECTION 8: SETUP PREVIEW */}
+  <section class="relative px-4 py-16 md:py-24 border-t border-white/5 bg-graphite-900/30">
+    <div class="max-w-4xl mx-auto text-center space-y-10">
+      
+      <div class="space-y-3">
+        <span class="text-xs font-mono font-semibold text-aqua-liquid uppercase tracking-wider">Get Up & Running</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          From installation to your first queue.
+        </h2>
+        <p class="text-sm text-brandText-secondary">
+          No cloud configuration or API keys needed. Follow our beginner-friendly setup guide.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-left">
+        {[
+          { num: "1", title: "Install Extension", text: "Load the unpacked folder in chrome://extensions" },
+          { num: "2", title: "Open Google Flow", text: "Navigate to flow.google or labs.google in Chrome" },
+          { num: "3", title: "Launch Side Panel", text: "Click the Flowmator icon in your toolbar" },
+          { num: "4", title: "Run First Queue", text: "Select Safe Mode and watch verified tiles render" },
+        ].map((s) => (
+          <div class="glass-tier2 p-5 rounded-2xl border border-white/10 space-y-2">
+            <span class="w-6 h-6 rounded-full bg-violet-600/30 text-aqua-liquid font-mono text-xs font-bold flex items-center justify-center border border-violet-400/30">
+              {s.num}
+            </span>
+            <h4 class="text-sm font-bold text-white">{s.title}</h4>
+            <p class="text-xs text-brandText-secondary">{s.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <a href="/setup" class="glass-btn-secondary px-6 py-3 text-xs font-semibold inline-flex items-center gap-2">
+          <span>Read Complete Setup & Developer Guide</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  {/* SECTION 9: FAQ */}
+  <section class="relative px-4 py-16 md:py-24 border-t border-white/5">
+    <div class="max-w-3xl mx-auto space-y-10">
+      
+      <div class="text-center space-y-3">
+        <span class="text-xs font-mono font-semibold text-violet-electric uppercase tracking-wider">Frequently Asked Questions</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          Everything you need to know.
+        </h2>
+        <p class="text-sm text-brandText-secondary">
+          Honest answers about third-party dependencies, safety, and extension mechanics.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="glass-tier2 rounded-2xl p-5 border border-white/10 group cursor-pointer">
+            <summary class="text-sm font-semibold text-white flex items-center justify-between list-none">
+              <span>{faq.question}</span>
+              <span class="text-aqua-liquid font-mono text-base group-open:rotate-45 transition-transform duration-200">+</span>
+            </summary>
+            <p class="text-xs text-brandText-secondary mt-3 leading-relaxed pt-2 border-t border-white/5">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  {/* SECTION 10: FINAL CTA */}
+  <section class="relative px-4 py-20 border-t border-white/10">
+    <div class="max-w-4xl mx-auto glass-tier2 rounded-3xl p-8 md:p-14 border border-white/20 shadow-2xl text-center space-y-6 relative overflow-hidden">
+      
+      <div class="absolute -inset-1 bg-gradient-to-r from-violet-electric/30 via-aqua-liquid/20 to-violet-deep/30 rounded-3xl blur-2xl opacity-60 pointer-events-none -z-10"></div>
+
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+        Make your next storyboard a smoother workflow.
+      </h2>
+      <p class="text-sm md:text-base text-brandText-secondary max-w-xl mx-auto leading-relaxed">
+        Organize the sequence. Monitor the results. Stay in control of the process.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-3">
+        <a href="/setup" class="glass-btn-primary px-8 py-3.5 text-sm font-semibold flex items-center gap-2 shadow-xl">
+          <span>Get Flowmator Free</span>
+          <ArrowRight className="w-4 h-4" />
+        </a>
+        <a href="/documentation" class="glass-btn-secondary px-6 py-3.5 text-sm">
+          <span>Explore Documentation Hub</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

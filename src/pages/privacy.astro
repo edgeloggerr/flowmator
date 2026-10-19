@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Shield, Lock, Eye, Database, AlertCircle } from 'lucide-react';
+---
+
+<Layout
+  title="Privacy Policy | Flowmator Chrome Extension"
+  description="Flowmator Privacy Policy. Verified zero-telemetry, 100% local browser storage (chrome.storage.local), and no external server tracking."
+>
+  <div class="px-4 py-12 md:py-20 max-w-4xl mx-auto space-y-10">
+    
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-emerald-400">
+        Privacy & Data Ethics
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Privacy Policy
+      </h1>
+      <p class="text-xs text-brandText-tertiary">
+        Last Updated: October 2026 • Verified against Extension Source v1.0.0
+      </p>
+    </div>
+
+    {/* Owner Review Notice */}
+    <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs text-brandText-secondary flex items-start gap-3">
+      <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+      <div>
+        <strong class="text-white block">Operator Review Notice:</strong>
+        This privacy policy accurately reflects an audit of the actual Flowmator Chrome Extension source code. Any business entity publishing Flowmator to commercial app stores should review legal entity details, governing jurisdictions, and contact endpoints before commercial distribution.
+      </div>
+    </div>
+
+    <div class="glass-tier2 rounded-3xl p-6 md:p-10 border border-white/15 space-y-8 text-xs md:text-sm text-brandText-secondary leading-relaxed">
+      
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">1. Core Architecture: Zero Telemetry & Local Operation</h2>
+        <p>
+          Flowmator is built on a strict "Local-First" privacy model. The extension operates entirely within your browser environment. Flowmator does not maintain external tracking servers, telemetry services, behavioral analytics, or third-party advertising SDKs.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">2. What Information Flowmator Processes</h2>
+        <p>Flowmator processes the following data exclusively on your local device:</p>
+        <ul class="list-disc list-inside space-y-2 pl-2">
+          <li><strong>Prompt Texts & Queue Order:</strong> Stored locally in your browser's <code class="text-white font-mono text-[11px]">chrome.storage.local</code> database to remember your queue between browser sessions.</li>
+          <li><strong>Extension Preferences:</strong> Your selected mode (Safe Sequence vs Turbo), minimum/maximum intervals, retry counts, and neumorphic UI theme preferences.</li>
+          <li><strong>DOM Canvas References:</strong> The extension temporarily inspects image media IDs (<code class="text-white font-mono text-[11px]">data-media-id</code>) and error tiles on the active Google Flow tab to verify generation status. This visual metadata is never logged, stored persistently, or transmitted off your machine.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">3. Third-Party Interactions (Google Flow)</h2>
+        <p>
+          Flowmator automates actions within Google Flow (<code class="text-aqua-liquid font-mono">flow.google.com</code> and <code class="text-aqua-liquid font-mono">labs.google</code>). Any prompt submitted through Flowmator is processed directly by Google pursuant to your existing Google Terms of Service and Privacy Policy. Flowmator does not proxy, intercept, or reroute your network requests to Google.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">4. Data Retention & Deletion</h2>
+        <p>
+          All queue data remains in your local browser profile until you choose to delete it. You can completely erase all stored prompts, completed histories, and settings at any moment by clicking the <strong>"Clear All"</strong> button in the Flowmator side panel or by uninstalling the extension from <code class="text-white font-mono text-[11px]">chrome://extensions</code>.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">5. Chrome Extension Permissions Justification</h2>
+        <p>Flowmator requests the following permissions strictly for functionality:</p>
+        <ul class="list-disc list-inside space-y-1.5 pl-2">
+          <li><code class="text-white font-mono text-[11px]">sidePanel</code>: To render the automation dashboard docked alongside Google Flow.</li>
+          <li><code class="text-white font-mono text-[11px]">debugger</code>: To dispatch authentic keystroke and mouse click events into the ProseMirror rich text editor.</li>
+          <li><code class="text-white font-mono text-[11px]">scripting</code>: To execute client-side canvas verification in Google Flow's main page context.</li>
+          <li><code class="text-white font-mono text-[11px]">storage</code>: To persist your queue and configuration locally.</li>
+          <li><code class="text-white font-mono text-[11px]">downloads</code>: To automatically save generated image tiles to your local disk when user-enabled.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">6. Contact & Support Inquiries</h2>
+        <p>
+          For privacy-related questions or source code verification audits, submit an inquiry through our <a href="/support" class="text-aqua-liquid underline">Support Center</a>.
+        </p>
+      </section>
+
+    </div>
+
+  </div>
+</Layout>

@@ -1,0 +1,71 @@
+---
+title: "Troubleshooting Google Flow Error Tiles: Causes, Detection, and Recovery"
+description: "A complete diagnostic guide to Google Flow error tiles: identifying rate limits, content moderation flags, and server timeouts with automated recovery steps."
+excerpt: "Learn what causes Google Flow error tiles, how Flowmator's Sequence Protector intercepts them, and how to recover without losing queue progress."
+publishedDate: "2026-10-12"
+author: "Flowmator Editorial Team"
+category: "Technical Guides"
+tags:
+  - Troubleshooting
+  - Error Tiles
+  - Google Flow AI
+  - Recovery
+readingTime: 6
+featured: false
+relatedSlugs:
+  - how-to-handle-rate-limits-in-ai-generation
+  - canvas-state-verification-technical-guide
+---
+
+## What are Google Flow error tiles?
+
+**Google Flow error tiles** are specialized DOM elements (`<flow-error-tile>` or `.error-tile`) rendered on the Google Flow canvas when an image generation fails. They typically indicate cloud quota exhaustion, temporary server rate limits, network WebSocket disconnections, or content moderation filter rejections.
+
+When using automated prompt queues, encountering an error tile without verification can lead to missing scenes. Flowmator's Safe Sequence Mode actively detects these nodes and triggers recovery procedures.
+
+---
+
+## 1. Common Causes of Google Flow Error Tiles
+
+Google Flow generally displays error tiles under three distinct conditions:
+
+### A. Rate Limits & Cloud Quota Exhaustion
+- **Symptom:** Error message states *"Too many requests"* or *"Unusual activity detected"*.
+- **Root Cause:** Prompts were submitted faster than your Google Cloud account's token allocation allows.
+- **Solution:** Allow Flowmator's 12-second cool-off delay to complete. Ensure you are not running multiple simultaneous browser tabs submitting to Google Flow simultaneously.
+
+### B. Content Safety & Moderation Filters
+- **Symptom:** Error message states *"Prompt flagged by safety guidelines"* or *"Generation failed due to policy"*.
+- **Root Cause:** A keyword or combination of descriptors in your prompt triggered Google's automated safety filters (e.g. violent keywords, copyrighted brand names, or sensitive terms).
+- **Solution:** Click the ✏️ **Edit** button in the Flowmator queue next to the failed prompt. Soften sensitive descriptive terms (e.g. change *"bloody confrontation"* to *"dramatic silhouette standoff"*), then click 🔄 **Retry**.
+
+### C. Server-Side Cloud Render Timeouts
+- **Symptom:** Canvas displays a circular loading spinner that eventually turns into a blank gray tile with a retry icon.
+- **Root Cause:** Cloud GPU nodes failed to complete diffusion steps within the allotted window during high server congestion.
+- **Solution:** Click 🔄 **Retry**. If cloud latency regularly exceeds 90 seconds, temporarily switch to **Turbo Interval Mode** with a 60–90 second delay.
+
+---
+
+## 2. How Flowmator Intercepts and Handles Error Tiles
+
+Flowmator's Safe Sequence Mode continuously monitors the canvas for error tiles:
+
+```javascript
+const currentErrorTiles = document.querySelectorAll('flow-error-tile, .error-tile');
+if (currentErrorTiles.length > beforeErrorCount) {
+  const latestError = currentErrorTiles[currentErrorTiles.length - 1];
+  const errorMsg = latestError.querySelector('.error-message-text')?.textContent?.trim() ||
+                   'Google Flow: Generation Failed';
+  return { status: 'failed', reason: errorMsg };
+}
+```
+
+When an error tile appears:
+1. **Error Extraction:** The exact message is captured and logged.
+2. **Cool-off Period:** If retries remain (`attempts <= maxRetries`), Flowmator initiates a 12-second countdown to clear rate limits.
+3. **Queue Halt (Sequence Protector):** If retries are exhausted, Flowmator halts the queue, sounds a Web Audio chime, and prompts you to choose between:
+   - **Retry Prompt:** Resets attempts and re-triggers the scene.
+   - **Edit Prompt:** Modifies the wording inline.
+   - **Skip & Continue:** Bypasses the frame and proceeds with the rest of the queue.
+
+For interactive troubleshooting steps, visit our [Support Center](/support).

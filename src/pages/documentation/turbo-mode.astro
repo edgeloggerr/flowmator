@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Zap, ArrowLeft, Clock, AlertCircle, CheckCircle2, Sliders, Shield } from 'lucide-react';
+---
+
+<Layout
+  title="Turbo Interval Mode Documentation | Flowmator"
+  description="Guide to Flowmator's Turbo Interval Mode: rapid timed prompt injection, randomized cadence ranges, human jitter emulation, and high-volume batch creation on Google Flow."
+>
+  <div class="px-4 py-12 md:py-20 max-w-4xl mx-auto space-y-12">
+    
+    <div class="space-y-4">
+      <a href="/documentation" class="text-xs text-aqua-liquid hover:underline inline-flex items-center gap-1.5 font-medium">
+        <ArrowLeft className="w-3.5 h-3.5" /> Back to Documentation Hub
+      </a>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-cyan-400">
+        Execution Engine
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Turbo Interval Mode
+      </h1>
+      <p class="text-sm sm:text-base text-brandText-secondary leading-relaxed">
+        High-throughput timed prompt injection designed for rapid bulk experimentation and non-sequential creative generation.
+      </p>
+    </div>
+
+    {/* Section 1: Overview */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/10 space-y-4">
+      <h2 class="text-xl font-bold text-white">Understanding Turbo Interval Mode</h2>
+      <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+        While Safe Sequence Mode halts and verifies each individual tile, Turbo Interval Mode focuses on <strong>continuous generation speed</strong>. It injects prompts into Google Flow at randomized interval intervals (e.g. 25–45 seconds) without executing a 90-second canvas polling loop.
+      </p>
+      
+      <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs text-brandText-secondary flex items-start gap-3">
+        <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+        <div>
+          <strong class="text-white block">Important Trade-off Disclosure:</strong>
+          Timer-based progression is not equivalent to verified completion. Turbo Mode will advance to the next prompt after the timer finishes regardless of whether Google Flow generated the image or encountered an error. If narrative sequence continuity is vital to your project, use <strong>Safe Sequence Mode</strong> instead.
+        </div>
+      </div>
+    </div>
+
+    {/* Section 2: Mechanics */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/10 space-y-6">
+      <h2 class="text-xl font-bold text-white">Cadence Configuration & Human Jitter</h2>
+      
+      <div class="space-y-4">
+        <div class="p-4 rounded-2xl bg-graphite-900/70 border border-white/5 space-y-2">
+          <span class="text-xs font-mono font-bold text-aqua-liquid">Randomized Interval Formula</span>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            Rather than sending prompts at a fixed robotic cadence (e.g. precisely every 30.000s), Flowmator calculates a randomized interval between your minimum and maximum delay:
+          </p>
+          <pre class="p-3 rounded-xl bg-black/40 text-[11px] font-mono text-cyan-300 overflow-x-auto">
+<code>const minSec = Math.max(5, minDelaySec);
+const maxSec = Math.max(minSec, maxDelaySec);
+const intervalSec = Math.floor(Math.random() * (maxSec - minSec + 1)) + minSec;</code>
+          </pre>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-graphite-900/70 border border-white/5 space-y-2">
+          <span class="text-xs font-mono font-bold text-aqua-liquid">Hardware-Level Keystroke Jitter</span>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            After typing the prompt via Chrome DevTools Protocol, Flowmator pauses for a randomized <strong>100ms to 500ms delay</strong> before pressing Enter. This mimics human interaction and prevents bot filters from triggering.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Section 3: When to Use */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/10 space-y-4">
+      <h2 class="text-xl font-bold text-white">Ideal Use Cases for Turbo Mode</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 rounded-2xl glass-tier3 border border-white/10 space-y-1.5">
+          <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+          <strong class="text-white block">Style & Texture Exploration</strong>
+          <p class="text-brandText-secondary leading-relaxed">Generating 50 variations of futuristic materials, abstract wallpapers, or architectural textures where sequence order does not matter.</p>
+        </div>
+
+        <div class="p-4 rounded-2xl glass-tier3 border border-white/10 space-y-1.5">
+          <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+          <strong class="text-white block">Bulk Character Concepting</strong>
+          <p class="text-brandText-secondary leading-relaxed">Pumping 30 different outfit and lighting variations into Google Flow to pick the single best hero shot for a pitch deck.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</Layout>

@@ -1,0 +1,77 @@
+---
+title: "From Shot List to Automated Prompt Sequence: An AI Filmmaker's Guide"
+description: "How to translate traditional director shot lists and screenplay beats into automated prompt sequences in Google Flow AI."
+excerpt: "A practical bridge between traditional film pre-production and generative AI pipelines: turning camera angles, blocking, and screenplay scenes into automated queues."
+publishedDate: "2026-10-14"
+author: "Flowmator Editorial Team"
+category: "AI Storyboarding"
+tags:
+  - Filmmaking
+  - Shot Lists
+  - Storyboarding
+  - Pre-Production
+readingTime: 6
+featured: false
+relatedSlugs:
+  - ai-storyboard-continuity-guide
+  - how-to-organize-google-flow-prompts
+---
+
+## How do you convert a traditional film shot list into an AI prompt sequence?
+
+**To convert a traditional film shot list into an AI prompt sequence**, map each row of your director's shot list (Scene, Shot Number, Lens, Framing, Character Action) into an explicit prompt formula: `[Framing + Camera Movement] + [Subject Action] + [Lighting & Film Stock Anchor]`. Numbering each prompt in sequential order and loading them into an automated browser queue allows you to generate complete film animatic frames directly from your production schedule.
+
+By automating this process, pre-production teams can visualize a 30-shot commercial or short film sequence in a single afternoon.
+
+---
+
+## 1. The Shot List Mapping Formula
+
+In traditional pre-production, a director or cinematographer creates a shot list table. Here is how standard cinematography columns translate directly into generative AI prompt syntax:
+
+| Shot List Field | Film Specification | AI Prompt Translation Element |
+| :--- | :--- | :--- |
+| **Shot Type** | Wide / Establishing | `Wide angle establishing shot, deep focus, panoramic framing` |
+| **Camera Movement** | Dolly / Tracking | `Low-angle tracking shot, subtle motion blur on foreground cobblestones` |
+| **Lens Focal Length** | 85mm Portrait Lens | `85mm prime lens, shallow depth of field, creamy bokeh background` |
+| **Lighting Setup** | Golden Hour / Rim Light | `Warm golden hour directional sidelight, subtle rim lighting on shoulders` |
+| **Film Stock** | Kodak Vision3 500T | `Cinematic 35mm film grain, muted Kodak Vision3 color grading` |
+
+---
+
+## 2. Walkthrough: Converting a 3-Shot Scene
+
+Consider a screenplay scene: *A private investigator discovers a break-in at his office at dusk.*
+
+### Shot 1: Exterior Office Establishing (Wide)
+- **Director's Note:** Establish the decrepit brownstone building and stormy twilight.
+- **Automated Prompt:**
+  ```text
+  1. Wide establishing exterior shot, 1940s brick brownstone building at stormy twilight, rain puddles reflecting streetlamps, second-story window illuminated with yellow light, 35mm film grain
+  ```
+
+### Shot 2: Interior Doorway Breach (Medium)
+- **Director's Note:** Reveal the splintered door lock and detective's hand drawing a revolver.
+- **Automated Prompt:**
+  ```text
+  2. Medium shot from inside dim hallway, silhouette of detective in fedora pushing open a splintered wooden office door, right hand drawing a snub-nosed revolver, harsh yellow streetlight spill
+  ```
+
+### Shot 3: Over-the-Shoulder Discovery (Close Action)
+- **Director's Note:** Focus on the ransacked filing cabinets through the detective's perspective.
+- **Automated Prompt:**
+  ```text
+  3. Over-the-shoulder medium close-up behind detective in trenchcoat, looking into ransacked office with papers strewn across mahogany desk, tilted blinds casting geometric shadows, 35mm grain
+  ```
+
+---
+
+## 3. Automating the Sequence with Flowmator
+
+Once your shot list is translated into prompt text:
+1. Export the list to a single CSV file with columns `Index`, `Shot`, and `Prompt`.
+2. Load the CSV into Flowmator's side panel using the **Upload CSV** button.
+3. Select **Safe Sequence Mode** to guarantee that Shot 2 does not begin generating until Shot 1's image tile is confirmed on the Google Flow canvas.
+4. Enable **Auto-Download Images** so each rendered frame is saved directly to your project's media bin with chronological filename indexing (`Flowmator_Date_1.png`, `Flowmator_Date_2.png`).
+
+To learn more about setting up your first CSV queue, read our [Setup Guide](/setup).

@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { AlertCircle, FileText } from 'lucide-react';
+---
+
+<Layout
+  title="Terms of Use | Flowmator Chrome Extension"
+  description="Terms of Use for Flowmator. Review permitted usage, third-party Google Flow platform dependencies, warranty disclaimers, and user responsibilities."
+>
+  <div class="px-4 py-12 md:py-20 max-w-4xl mx-auto space-y-10">
+    
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-violet-electric">
+        Legal Agreements
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Terms of Use
+      </h1>
+      <p class="text-xs text-brandText-tertiary">
+        Last Updated: October 2026 • Flowmator Suite v1.0.0
+      </p>
+    </div>
+
+    {/* Operator Review Notice */}
+    <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs text-brandText-secondary flex items-start gap-3">
+      <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+      <div>
+        <strong class="text-white block">Operator Review Notice:</strong>
+        This terms-of-use agreement outlines typical terms for third-party browser automation utilities. Commercial distributors should adapt these terms with qualified legal counsel for specific jurisdictional requirements.
+      </div>
+    </div>
+
+    <div class="glass-tier2 rounded-3xl p-6 md:p-10 border border-white/15 space-y-8 text-xs md:text-sm text-brandText-secondary leading-relaxed">
+      
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">1. Acceptance of Terms</h2>
+        <p>
+          By installing, downloading, or using the Flowmator Chrome Extension ("Software"), you agree to be bound by these Terms of Use. If you do not agree to these terms, do not install or use the Software.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">2. Nature of Software & Third-Party Dependencies</h2>
+        <p>
+          Flowmator is an independent, client-side workflow utility that interfaces with Google Flow AI via browser DOM automation. Flowmator is not affiliated with, endorsed by, or operated by Google LLC.
+        </p>
+        <p>
+          You acknowledge that Google Flow AI is maintained solely by Google. Google may update its user interface, modify its DOM selectors, introduce rate limits, or adjust service availability at any time, which may temporarily or permanently impact Flowmator's automation features.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">3. Permitted Use & User Compliance</h2>
+        <p>
+          You agree to use Flowmator solely in compliance with all applicable local, national, and international laws, as well as Google's Generative AI Prohibited Use Policy and Google Terms of Service. You are solely responsible for all prompt content submitted through the Software.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">4. Disclaimer of Warranties</h2>
+        <p>
+          THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+        </p>
+        <p>
+          THE DEVELOPERS DO NOT WARRANT THAT FLOWMATOR WILL MEET YOUR CREATIVE REQUIREMENTS, THAT OPERATION WILL BE UNINTERRUPTED OR ERROR-FREE, OR THAT GOOGLE FLOW WILL NOT DEPRECATE COMPATIBLE INTERFACES.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">5. Limitation of Liability</h2>
+        <p>
+          IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, LOSS OF DATA, OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-white">6. Inquiries</h2>
+        <p>
+          For licensing questions or commercial use agreements, reach out via the <a href="/support" class="text-aqua-liquid underline">Flowmator Support Center</a>.
+        </p>
+      </section>
+
+    </div>
+
+  </div>
+</Layout>

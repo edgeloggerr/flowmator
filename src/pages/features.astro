@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Shield, Zap, RefreshCw, Eye, Download, Database, BarChart3, AlertOctagon, CheckCircle2, ArrowRight, Layers, Sliders } from 'lucide-react';
+---
+
+<Layout
+  title="Flowmator Features | Safe Sequence Mode, Canvas Verification & Continuity"
+  description="Deep-dive into Flowmator's capabilities: DOM-level canvas verification, hardware CDP dispatch, automatic rate-limit cool-off delays, CSV queue management, and storyboard continuity protection."
+>
+  <div class="px-4 py-12 md:py-20 max-w-5xl mx-auto space-y-16">
+    
+    {/* Page Header */}
+    <div class="text-center space-y-4 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-aqua-liquid">
+        Complete Feature Breakdown
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Engineered for Sequential AI Creation
+      </h1>
+      <p class="text-sm sm:text-base text-brandText-secondary leading-relaxed">
+        Flowmator transforms Google Flow AI from a single-prompt playground into an automated sequential storyboard studio.
+      </p>
+    </div>
+
+    {/* Feature 1: Safe Sequence Mode Deep Dive */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-10 border border-white/15 space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="p-3 rounded-2xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+          <Shield className="w-6 h-6" />
+        </div>
+        <div>
+          <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Continuity First</span>
+          <h2 class="text-2xl font-bold text-white">Safe Sequence Mode</h2>
+        </div>
+      </div>
+
+      <p class="text-sm text-brandText-secondary leading-relaxed">
+        Safe Sequence Mode is designed specifically for visual storytellers whose outputs depend on a strict scene sequence. If you're generating a 10-shot comic or a film animatic, missing shot #4 makes the remaining shots unusable.
+      </p>
+
+      {/* Visual Canvas State Comparison Diagram */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+        <div class="p-4 rounded-2xl bg-graphite-900/80 border border-white/10 space-y-2">
+          <div class="text-xs font-mono text-brandText-tertiary">PRE-DISPATCH CANVAS SNAPSHOT</div>
+          <div class="text-xs text-brandText-secondary">
+            Flowmator catalogs all existing <code class="text-white font-mono">img[data-media-id]</code> attributes and counts existing error tiles.
+          </div>
+          <div class="p-2.5 rounded-lg bg-black/40 font-mono text-[11px] text-cyan-300">
+            mediaIds: ["media-101", "media-102"]<br />
+            errorTileCount: 0
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-graphite-900/80 border border-emerald-500/30 space-y-2">
+          <div class="text-xs font-mono text-emerald-400">ACTIVE POLLING & RESULT CONFIRMATION</div>
+          <div class="text-xs text-brandText-secondary">
+            Polls every 1.5s for up to 90s. Advances only when a new media-id appears with dimensions &gt; 150x150px.
+          </div>
+          <div class="p-2.5 rounded-lg bg-black/40 font-mono text-[11px] text-emerald-300">
+            newMediaFound: ["media-103"]<br />
+            status: "success" ➔ Proceed
+          </div>
+        </div>
+      </div>
+
+      <div class="p-3.5 rounded-xl bg-violet-900/20 border border-violet-500/30 text-xs text-brandText-secondary flex items-start gap-2.5">
+        <Eye className="w-4 h-4 text-aqua-liquid shrink-0 mt-0.5" />
+        <span>
+          <strong>Truthful Technical Disclosure:</strong> Canvas verification validates that an image file successfully rendered on the Google Flow canvas and that no error tiles were triggered. It does not perform computer vision validation to evaluate whether the image matches your artistic prompt.
+        </span>
+      </div>
+    </div>
+
+    {/* Feature 2: Turbo Interval Mode Deep Dive */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-10 border border-white/15 space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="p-3 rounded-2xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+          <Zap className="w-6 h-6" />
+        </div>
+        <div>
+          <span class="text-xs font-mono text-cyan-400 uppercase tracking-wider">High-Velocity Pipeline</span>
+          <h2 class="text-2xl font-bold text-white">Turbo Interval Mode</h2>
+        </div>
+      </div>
+
+      <p class="text-sm text-brandText-secondary leading-relaxed">
+        Turbo Interval Mode is engineered for broad exploratory generation where prompt order is not strictly narrative-dependent. It dispatches prompts at randomized cadences (e.g., 25s–45s) to maximize generation volume while maintaining natural human jitter to prevent spam detection.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="p-3.5 rounded-xl glass-tier3 border border-white/10 space-y-1">
+          <div class="text-xs font-bold text-white">Randomized Interval</div>
+          <div class="text-[11px] text-brandText-secondary">Configurable minimum and maximum seconds between prompt dispatches.</div>
+        </div>
+        <div class="p-3.5 rounded-xl glass-tier3 border border-white/10 space-y-1">
+          <div class="text-xs font-bold text-white">Reduced Polling</div>
+          <div class="text-[11px] text-brandText-secondary">Minimal background CPU overhead by bypassing 90s canvas polling loops.</div>
+        </div>
+        <div class="p-3.5 rounded-xl glass-tier3 border border-white/10 space-y-1">
+          <div class="text-xs font-bold text-white">Manual Oversight</div>
+          <div class="text-[11px] text-brandText-secondary">Requires user monitoring since prompts advance regardless of tile failures.</div>
+        </div>
+      </div>
+    </div>
+
+    {/* Grid of Supporting Capabilities */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      {/* Capability 1: Rate-Limit Cool-off */}
+      <div class="glass-tier2 p-6 rounded-2xl border border-white/10 space-y-3">
+        <div class="w-8 h-8 rounded-xl bg-violet-600/20 text-violet-300 flex items-center justify-center">
+          <RefreshCw className="w-4 h-4" />
+        </div>
+        <h3 class="text-lg font-bold text-white">Rate-Limit Cool-off Delays</h3>
+        <p class="text-xs text-brandText-secondary leading-relaxed">
+          When Google Flow flags a rapid session with temporary throttling, Flowmator enters a configurable cool-off timer (default 12 seconds) before retrying the prompt, giving Google cloud servers time to reset your allocation window.
+        </p>
+      </div>
+
+      {/* Capability 2: Sequence Protector & Audio Alert */}
+      <div class="glass-tier2 p-6 rounded-2xl border border-white/10 space-y-3">
+        <div class="w-8 h-8 rounded-xl bg-red-500/20 text-red-300 flex items-center justify-center">
+          <AlertOctagon className="w-4 h-4" />
+        </div>
+        <h3 class="text-lg font-bold text-white">Sequence Protector & Audio Alert</h3>
+        <p class="text-xs text-brandText-secondary leading-relaxed">
+          If retries are exhausted, the Sequence Protector halts the queue immediately and plays a dual-frequency audio chime via the Web Audio API, giving you the choice to retry, edit prompt text, or skip the scene.
+        </p>
+      </div>
+
+      {/* Capability 3: CSV Import & Management */}
+      <div class="glass-tier2 p-6 rounded-2xl border border-white/10 space-y-3" id="csv-import">
+        <div class="w-8 h-8 rounded-xl bg-aqua-liquid/20 text-aqua-liquid flex items-center justify-center">
+          <Database className="w-4 h-4" />
+        </div>
+        <h3 class="text-lg font-bold text-white">CSV Batching & Inline Editing</h3>
+        <p class="text-xs text-brandText-secondary leading-relaxed">
+          Upload multi-scene prompt lists via standard CSV files. In the queue panel, click the ✏️ pencil icon to edit prompt text inline without deleting and rebuilding your queue.
+        </p>
+      </div>
+
+      {/* Capability 4: Auto-Download Manager */}
+      <div class="glass-tier2 p-6 rounded-2xl border border-white/10 space-y-3">
+        <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center">
+          <Download className="w-4 h-4" />
+        </div>
+        <h3 class="text-lg font-bold text-white">Automatic Result Downloads</h3>
+        <p class="text-xs text-brandText-secondary leading-relaxed">
+          Enable optional auto-downloads to save newly verified images straight to your local Downloads folder with automated timestamp naming (<code class="text-white font-mono text-[11px]">Flowmator_Date_Index.png</code>).
+        </p>
+      </div>
+
+    </div>
+
+    {/* Bottom Navigation CTA */}
+    <div class="p-8 rounded-3xl glass-tier3 border border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <h3 class="text-base font-bold text-white">Ready to understand the underlying mechanics?</h3>
+        <p class="text-xs text-brandText-secondary mt-0.5">Explore how Chrome DevTools Protocol and isolated content scripts interact.</p>
+      </div>
+      <a href="/how-it-works" class="glass-btn-primary px-5 py-2.5 text-xs font-semibold shrink-0 flex items-center gap-2">
+        <span>How It Works Guide</span>
+        <ArrowRight className="w-3.5 h-3.5" />
+      </a>
+    </div>
+
+  </div>
+</Layout>

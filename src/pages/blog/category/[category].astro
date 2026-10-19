@@ -1,0 +1,121 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { ArrowLeft, ArrowRight, Clock, Calendar, BookOpen } from 'lucide-react';
+import { SITE_CONFIG, getCanonicalUrl } from '../../../config/site';
+
+export async function getStaticPaths() {
+  const categoryMap: Record<string, { name: string; description: string }> = {
+    'google-flow-ai': {
+      name: 'Google Flow AI',
+      description: 'Engineering guides, prompt organization strategies, and workflow automation tailored specifically for Google Flow AI.'
+    },
+    'prompt-automation': {
+      name: 'Prompt Automation',
+      description: 'Techniques for sequential execution, interval timing, queue design, and rate-limit recovery across automated AI creative pipelines.'
+    },
+    'ai-storyboarding': {
+      name: 'AI Storyboarding',
+      description: 'Preserving character design continuity, lighting consistency, and camera progression across sequential multi-frame storyboards.'
+    },
+    'creator-productivity': {
+      name: 'Creator Productivity',
+      description: 'Batch workflows, agency asset pipelines, and automated export processes that save hours of manual generation waiting.'
+    },
+    'technical-guides': {
+      name: 'Technical Guides',
+      description: 'DOM canvas state verification, Chromium DevTools Protocol (CDP) dispatching, and error tile recovery architecture.'
+    }
+  };
+
+  const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+
+  return Object.entries(categoryMap).map(([slug, meta]) => {
+    const posts = allPosts.filter(
+      (p) => p.data.category.toLowerCase().replace(/\s+/g, '-') === slug
+    );
+    return {
+      params: { category: slug },
+      props: { meta, posts }
+    };
+  });
+}
+
+const { category } = Astro.params;
+const { meta, posts } = Astro.props;
+const categoryUrl = getCanonicalUrl(`/blog/category/${category}`);
+---
+
+<Layout
+  title={`${meta.name} Guides & Tutorials | The Flowmator Journal`}
+  description={meta.description}
+  canonical={categoryUrl}
+>
+  <div class="px-4 py-12 md:py-20 max-w-5xl mx-auto space-y-12">
+    
+    <div class="space-y-4">
+      <a href="/blog" class="text-xs text-aqua-liquid hover:underline inline-flex items-center gap-1.5 font-medium">
+        <ArrowLeft className="w-3.5 h-3.5" /> Back to All Articles
+      </a>
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-violet-electric">
+        Topic Collection
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        {meta.name}
+      </h1>
+
+      <p class="text-sm sm:text-base text-brandText-secondary leading-relaxed max-w-2xl">
+        {meta.description}
+      </p>
+    </div>
+
+    {/* Articles Grid */}
+    {posts.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {posts.map((post) => (
+          <a
+            href={`/blog/${post.id.replace(/\.mdx?$/, '')}`}
+            class="glass-tier2 rounded-3xl p-6 border border-white/10 flex flex-col justify-between hover:border-violet-electric/50 transition-all group shadow-xl"
+          >
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-[11px] font-mono">
+                <span class="text-aqua-liquid px-2 py-0.5 rounded-md bg-aqua-liquid/10 border border-aqua-liquid/20">
+                  {post.data.category}
+                </span>
+                <span class="text-brandText-tertiary flex items-center gap-1">
+                  <Clock className="w-3 h-3" /> {post.data.readingTime} min
+                </span>
+              </div>
+
+              <h2 class="text-lg font-bold text-white group-hover:text-violet-electric transition-colors leading-snug">
+                {post.data.title}
+              </h2>
+
+              <p class="text-xs text-brandText-secondary leading-relaxed line-clamp-3">
+                {post.data.excerpt}
+              </p>
+            </div>
+
+            <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-xs text-brandText-tertiary">
+              <span class="flex items-center gap-1">
+                <Calendar className="w-3 h-3" /> {post.data.publishedDate}
+              </span>
+              <span class="text-aqua-liquid font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Read Publication <ArrowRight className="w-3 h-3" />
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="p-12 rounded-3xl glass-tier3 text-center border border-white/10 space-y-3">
+        <BookOpen className="w-8 h-8 text-brandText-tertiary mx-auto opacity-50" />
+        <h3 class="text-base font-semibold text-white">No articles in this category yet</h3>
+        <p class="text-xs text-brandText-secondary">Articles are regularly published to this topic cluster.</p>
+      </div>
+    )}
+
+  </div>
+</Layout>

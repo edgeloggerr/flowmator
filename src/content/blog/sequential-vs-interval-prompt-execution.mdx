@@ -1,0 +1,66 @@
+---
+title: "Sequential vs. Interval-Based Prompt Execution: Which Workflow Should You Use?"
+description: "A comprehensive comparison between DOM-verified sequential prompt execution and interval-based timed batching for Google Flow AI."
+excerpt: "Understand the critical differences between Safe Sequence verification and Turbo Interval batching to choose the right execution model for your creative workflow."
+publishedDate: "2026-10-17"
+author: "Flowmator Editorial Team"
+category: "Prompt Automation"
+tags:
+  - Automation Modes
+  - Safe Sequence
+  - Turbo Mode
+  - Execution Architecture
+readingTime: 6
+featured: true
+relatedSlugs:
+  - google-flow-ai-prompt-automation-guide
+  - canvas-state-verification-technical-guide
+---
+
+## What is the difference between sequential and interval prompt execution?
+
+**Sequential prompt execution** verifies that a generated media tile has successfully rendered on the canvas before dispatching the next prompt, pausing if an error occurs to protect narrative continuity. **Interval-based execution** dispatches prompts continuously based on a randomized timer (e.g. every 30 seconds), prioritizing raw generation throughput over individual frame verification.
+
+Choosing between the two depends entirely on whether your project requires unbroken chronological order (such as a storyboard animatic) or high-volume creative exploration (such as concept ideation).
+
+---
+
+## Architectural Comparison Matrix
+
+| Capability | Safe Sequence Mode | Turbo Interval Mode |
+| :--- | :--- | :--- |
+| **Primary Goal** | 100% Continuity & Zero Missing Frames | Maximum Generation Speed & Throughput |
+| **Progression Trigger** | Confirmed DOM image element appearance | Countdown timer completion (e.g. 25–45s) |
+| **DOM Canvas Polling** | Active (polls every 1.5s up to 90s) | None (minimal background CPU usage) |
+| **Error Tile Detection** | Automatic (intercepts `<flow-error-tile>`) | None (advances regardless of error) |
+| **Rate-Limit Behavior** | Automatic 12-second cool-off & retry | Dispatches on schedule regardless of rate limits |
+| **Sequence Protector** | Halts queue with audio chime upon failure | None (queue runs to end) |
+| **Best Used For** | Storyboards, film animatics, comics | Broad concepting, style testing, wallpaper batches |
+
+---
+
+## When to Choose Safe Sequence Mode
+
+Use **Safe Sequence Mode** when:
+1. **You are creating a continuous narrative:** In a film storyboard or graphic novel, Shot #4 (close-up) depends completely on the visual coherence established in Shot #3 (medium shot). If Shot #3 fails due to a temporary moderation trigger or cloud timeout, continuing without it renders the entire sequence out of sync.
+2. **You want to run queues unattended:** Safe Sequence Mode actively guards against rate limits. If Google Cloud experiences temporary throttling, Flowmator pauses for 12 seconds to clear the rate limit before retrying.
+3. **You need automatic image saving:** Because Safe Sequence Mode verifies the unique `data-media-id` of each completed tile, it reliably passes authentic image URLs to the Chrome Downloads manager.
+
+Read our in-depth technical documentation in the [Safe Sequence Mode Guide](/documentation/safe-sequence-mode).
+
+---
+
+## When to Choose Turbo Interval Mode
+
+Use **Turbo Interval Mode** when:
+1. **You are generating high-volume concept variations:** For example, exploring 40 different neon armor designs for a videogame character. If 3 out of 40 designs fail due to temporary network blips, it does not ruin the remaining 37.
+2. **Google Flow server latency is low:** During off-peak hours when Google Flow renders images in under 15 seconds, a 25-second interval allows rapid, continuous prompt streaming.
+3. **You are actively watching the browser:** Since you are sitting at your desk reviewing prompts in real time, you can manually monitor output quality while Flowmator handles the repetitive typing and clicking.
+
+Learn how to configure cadence ranges in the [Turbo Interval Mode Guide](/documentation/turbo-mode).
+
+---
+
+## Conclusion: Matching Workflow to Creative Intent
+
+Neither mode is universally superior; each solves a different creative bottleneck. Flowmator was architected with a dual-engine switcher so you can alternate between verified storyboard sequencing and high-velocity batching with a single click.

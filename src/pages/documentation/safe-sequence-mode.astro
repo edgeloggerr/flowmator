@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Shield, ArrowLeft, RefreshCw, CheckCircle2, AlertTriangle, Terminal, Eye, Volume2 } from 'lucide-react';
+---
+
+<Layout
+  title="Safe Sequence Mode Documentation | Flowmator"
+  description="Comprehensive technical guide to Flowmator's Safe Sequence Mode: pre-dispatch canvas snapshots, DOM polling, error tile interception, and storyboard continuity protection."
+>
+  <div class="px-4 py-12 md:py-20 max-w-4xl mx-auto space-y-12">
+    
+    <div class="space-y-4">
+      <a href="/documentation" class="text-xs text-aqua-liquid hover:underline inline-flex items-center gap-1.5 font-medium">
+        <ArrowLeft className="w-3.5 h-3.5" /> Back to Documentation Hub
+      </a>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-emerald-400">
+        Execution Engine
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Safe Sequence Mode
+      </h1>
+      <p class="text-sm sm:text-base text-brandText-secondary leading-relaxed">
+        The verified automation workflow designed specifically to prevent gaps and broken continuity in multi-shot storyboard sequences.
+      </p>
+    </div>
+
+    {/* Section 1: Overview */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/10 space-y-4">
+      <h2 class="text-xl font-bold text-white">Why Safe Sequence Mode Exists</h2>
+      <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+        Standard browser automation tools rely on static timer delays (e.g., "wait 30 seconds, then send next prompt"). If Google Flow takes 35 seconds to render an image due to cloud traffic, or if a content policy filter rejects the prompt, a timer-based tool blind-fires the next prompt.
+      </p>
+      <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+        This leads to out-of-sync frames, missed scenes, and ruined storyboards. Safe Sequence Mode replaces timer guesses with <strong>deterministic DOM feedback loops</strong>.
+      </p>
+    </div>
+
+    {/* Section 2: Step-by-Step Architecture */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/10 space-y-6">
+      <h2 class="text-xl font-bold text-white">How Verification Works (Under the Hood)</h2>
+      
+      <div class="space-y-5">
+        <div class="p-4 rounded-2xl bg-graphite-900/70 border border-white/5 space-y-2">
+          <span class="text-xs font-mono font-bold text-aqua-liquid">Phase 1: Pre-Execution Snapshot</span>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            Before dispatching keystrokes into ProseMirror, Flowmator executes an inspection function in Google Flow's <code class="text-white font-mono text-[11px]">world: 'MAIN'</code>:
+          </p>
+          <pre class="p-3 rounded-xl bg-black/40 text-[11px] font-mono text-emerald-300 overflow-x-auto">
+<code>const mediaIds = Array.from(document.querySelectorAll('img[data-media-id], img.image'))
+  .map(img => img.getAttribute('data-media-id') || img.src);
+const errorTiles = document.querySelectorAll('flow-error-tile, .error-tile');</code>
+          </pre>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-graphite-900/70 border border-white/5 space-y-2">
+          <span class="text-xs font-mono font-bold text-aqua-liquid">Phase 2: Active Polling Loop</span>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            Flowmator polls every 1,500 milliseconds for up to 90 seconds. On each tick, it tests two conditions:
+          </p>
+          <ul class="list-disc list-inside space-y-1.5 text-xs text-brandText-secondary">
+            <li><strong>Condition A (Failure):</strong> If <code class="text-white font-mono text-[11px]">currentErrorTiles.length &gt; beforeErrorCount</code>, generation is marked as failed and the error text is extracted from <code class="text-white font-mono text-[11px]">.error-message-text</code>.</li>
+            <li><strong>Condition B (Success):</strong> If an image tile appears with natural dimensions &gt; 150px and a previously unseen media ID, generation is confirmed.</li>
+          </ul>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-graphite-900/70 border border-white/5 space-y-2" id="continuity">
+          <span class="text-xs font-mono font-bold text-aqua-liquid">Phase 3: Rate-Limit Recovery & Sequence Protector</span>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            If Google Flow displays a rate-limit notice:
+          </p>
+          <ol class="list-decimal list-inside space-y-1.5 text-xs text-brandText-secondary">
+            <li>Flowmator enters a <strong>12-second cool-off countdown</strong> to let Google cloud allocations reset.</li>
+            <li>It increments the prompt's attempt counter and re-injects the same prompt.</li>
+            <li>If retries reach the ceiling (default 2), the <strong>Sequence Protector</strong> engages: the queue halts, an audio chime sounds, and you are prompted to Retry, Edit, or Skip.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    {/* Section 3: Recommended Settings */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/10 space-y-4">
+      <h2 class="text-xl font-bold text-white">Recommended Settings for Storyboarders</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="p-3.5 rounded-xl glass-tier3 border border-white/10 space-y-1">
+          <span class="text-brandText-tertiary block">Auto-Retries on Error</span>
+          <strong class="text-white text-sm">2 Retries</strong>
+          <p class="text-[11px] text-brandText-secondary">Sufficient to overcome temporary cloud blips without infinite loops.</p>
+        </div>
+        <div class="p-3.5 rounded-xl glass-tier3 border border-white/10 space-y-1">
+          <span class="text-brandText-tertiary block">Rate-Limit Cool-off</span>
+          <strong class="text-white text-sm">12–15 Seconds</strong>
+          <p class="text-[11px] text-brandText-secondary">Optimal window for Google's API bucket replenishments.</p>
+        </div>
+        <div class="p-3.5 rounded-xl glass-tier3 border border-white/10 space-y-1">
+          <span class="text-brandText-tertiary block">Post-Gen Pause</span>
+          <strong class="text-white text-sm">6 Seconds</strong>
+          <p class="text-[11px] text-brandText-secondary">Prevents instant back-to-back submissions that trigger anti-bot flags.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</Layout>

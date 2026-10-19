@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArchitectureDiagramIsland from '../components/ArchitectureDiagramIsland';
+import { Layers, Terminal, Cpu, Monitor, ShieldCheck, AlertOctagon, CheckCircle2, ArrowRight } from 'lucide-react';
+---
+
+<Layout
+  title="How Flowmator Works | Technical Architecture & Lifecycle"
+  description="Explore the step-by-step engineering behind Flowmator: Chromium DevTools Protocol (CDP) input dispatch, ProseMirror editor targeting, DOM canvas diffing, and error tile detection."
+>
+  <div class="px-4 py-12 md:py-20 max-w-5xl mx-auto space-y-16">
+    
+    {/* Page Title */}
+    <div class="text-center space-y-4 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-violet-electric">
+        Technical Narrative & Pipeline
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        How Flowmator Automates Google Flow
+      </h1>
+      <p class="text-sm sm:text-base text-brandText-secondary leading-relaxed">
+        A transparent breakdown of how Flowmator interacts with the Chromium browser engine, Google Flow's ProseMirror editor, and client-side canvas states.
+      </p>
+    </div>
+
+    {/* Interactive Architecture Component */}
+    <div class="space-y-4">
+      <div class="text-center">
+        <h2 class="text-xl font-bold text-white">Interactive 6-Stage Pipeline</h2>
+        <p class="text-xs text-brandText-secondary">Click on any pipeline step to view actual code snippets and execution logic</p>
+      </div>
+      <ArchitectureDiagramIsland client:load />
+    </div>
+
+    {/* Step-by-Step Technical Narrative */}
+    <div class="space-y-8">
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-white">Execution Lifecycle Steps</h2>
+        <p class="text-xs text-brandText-secondary">The journey of each prompt through Flowmator's verified execution loop</p>
+      </div>
+
+      <div class="space-y-6">
+        {[
+          {
+            num: "Step 01",
+            title: "Prompt Ingestion & Memory Structuring",
+            desc: "Prompts entered via the sidepanel or uploaded via CSV are split by newlines or the @@@NEXT@@@ delimiter. Each entry is assigned a crypto.randomUUID() and stored in chrome.storage.local with attempts: 0 and status: 'pending'.",
+            tag: "Storage Layer"
+          },
+          {
+            num: "Step 02",
+            title: "Target Tab Validation & Active Lock Screen",
+            desc: "Flowmator queries the active Chrome window to confirm the current tab matches labs.google or flow.google. If you navigate away to another site, the side panel activates a tactile Lock Screen overlay to prevent firing prompts onto unintended web pages.",
+            tag: "Security & Tab Control"
+          },
+          {
+            num: "Step 03",
+            title: "Pre-Dispatch Canvas State Snapshot",
+            desc: "Before sending any keystroke, Flowmator inspects the Google Flow DOM in world: 'MAIN'. It indexes all existing image media-ids and counts any pre-existing error tiles. This snapshot serves as the baseline for the post-generation diff.",
+            tag: "DOM State Diffing"
+          },
+          {
+            num: "Step 04",
+            title: "Chromium DevTools Protocol Input Dispatch",
+            desc: "Flowmator attaches chrome.debugger (v1.3) to dispatch authentic isTrusted: true input events directly into Google Flow's ProseMirror editor (KeyA, Backspace, Input.insertText, Enter). It incorporates a 100ms-500ms randomized human jitter delay before triggering the generation button.",
+            tag: "CDP Dispatch"
+          },
+          {
+            num: "Step 05",
+            title: "Canvas Tile Verification Polling Loop",
+            desc: "Flowmator polls every 1.5 seconds for up to 90 seconds. If an image with natural dimensions > 150x150px and a new media-id appears, it is verified as completed. If a <flow-error-tile> appears, the error text is extracted and reported immediately.",
+            tag: "Verification Loop"
+          },
+          {
+            num: "Step 06",
+            title: "Rate-Limit Cool-off & Sequence Protection",
+            desc: "If an error tile indicates temporary throttling, Flowmator enters a 12-second cool-off countdown to allow Google cloud allocations to reset. If max retries are exceeded, the Sequence Protector halts the queue and sounds a Web Audio chime.",
+            tag: "Protector Engine"
+          }
+        ].map((item) => (
+          <div class="glass-tier2 rounded-2xl p-6 border border-white/10 flex flex-col sm:flex-row items-start gap-4">
+            <span class="text-xs font-mono font-bold text-aqua-liquid px-2.5 py-1 rounded-md bg-aqua-liquid/10 border border-aqua-liquid/20 shrink-0">
+              {item.num}
+            </span>
+            <div class="space-y-1.5 flex-1">
+              <div class="flex items-center justify-between">
+                <h3 class="text-base font-bold text-white">{item.title}</h3>
+                <span class="text-[10px] font-mono text-brandText-tertiary hidden sm:inline">{item.tag}</span>
+              </div>
+              <p class="text-xs text-brandText-secondary leading-relaxed">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Troubleshooting & Next Steps Banner */}
+    <div class="p-8 rounded-3xl glass-tier3 border border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <h3 class="text-base font-bold text-white">Encountering an issue or DOM shift?</h3>
+        <p class="text-xs text-brandText-secondary mt-0.5">Use our diagnostic assistant to test tab validation and selector behavior.</p>
+      </div>
+      <a href="/support" class="glass-btn-primary px-5 py-2.5 text-xs font-semibold shrink-0 flex items-center gap-2">
+        <span>Support & Diagnostics</span>
+        <ArrowRight className="w-3.5 h-3.5" />
+      </a>
+    </div>
+
+  </div>
+</Layout>

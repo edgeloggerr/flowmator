@@ -1,0 +1,124 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Wrench, ArrowLeft, AlertTriangle, CheckCircle2, Terminal, ExternalLink, HelpCircle } from 'lucide-react';
+---
+
+<Layout
+  title="Flowmator Troubleshooting Guide | Common Fixes & Diagnostic Steps"
+  description="Troubleshooting guide for Flowmator. Learn how to resolve tab detection lockouts, ProseMirror rich-text cursor issues, 90-second generation timeouts, and download shelf settings."
+>
+  <div class="px-4 py-12 md:py-20 max-w-4xl mx-auto space-y-12">
+    
+    <div class="space-y-4">
+      <a href="/documentation" class="text-xs text-aqua-liquid hover:underline inline-flex items-center gap-1.5 font-medium">
+        <ArrowLeft className="w-3.5 h-3.5" /> Back to Documentation Hub
+      </a>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-red-400">
+        Diagnostic Manual
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Complete Troubleshooting Guide
+      </h1>
+      <p class="text-sm sm:text-base text-brandText-secondary leading-relaxed">
+        Step-by-step diagnostic procedures for resolving tab detection, CDP debugger attachments, canvas timeouts, and rate limits.
+      </p>
+    </div>
+
+    {/* Table of Contents */}
+    <div class="glass-tier3 rounded-2xl p-4 border border-white/10 space-y-2 text-xs">
+      <span class="font-semibold text-white uppercase tracking-wider block text-[11px]">Quick Jump Navigation:</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-brandText-secondary">
+        <a href="#tab-detection" class="hover:text-aqua-liquid">1. Extension Does Not Recognize Google Flow Tab ➔</a>
+        <a href="#prompt-submission" class="hover:text-aqua-liquid">2. Prompts In Queue But Not Entering Box ➔</a>
+        <a href="#tile-timeout" class="hover:text-aqua-liquid">3. Generation Timed Out After 90 Seconds ➔</a>
+        <a href="#error-tile" class="hover:text-aqua-liquid">4. Sequence Paused on Error Tile ➔</a>
+        <a href="#downloads" class="hover:text-aqua-liquid">5. Images Not Saving to Disk ➔</a>
+        <a href="#dom-change" class="hover:text-aqua-liquid">6. Google Flow Changed Its User Interface ➔</a>
+      </div>
+    </div>
+
+    {/* Section 1 */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/10 space-y-4" id="tab-detection">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-red-500/20 text-red-300 flex items-center justify-center font-bold">1</div>
+        <h2 class="text-xl font-bold text-white">Extension Shows "Google Flow Not Detected"</h2>
+      </div>
+      <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+        Flowmator includes an active Lock Screen overlay that prevents prompts from accidentally injecting into unrelated browser tabs (e.g. YouTube, Twitter, or docs).
+      </p>
+      <div class="p-4 rounded-2xl bg-graphite-900/80 border border-white/5 space-y-2 text-xs text-brandText-secondary">
+        <strong class="text-white block">Diagnostic Checklist:</strong>
+        <ul class="list-disc list-inside space-y-1">
+          <li>Confirm the active tab URL is <code class="text-aqua-liquid font-mono">flow.google.com</code> or <code class="text-aqua-liquid font-mono">labs.google/flow</code>.</li>
+          <li>Click anywhere directly onto the Google Flow canvas to ensure Chrome marks it as the focused window.</li>
+          <li>Click the <strong>Recheck Tab</strong> button inside the side panel overlay.</li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Section 2 */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/10 space-y-4" id="prompt-submission">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-violet-500/20 text-violet-300 flex items-center justify-center font-bold">2</div>
+        <h2 class="text-xl font-bold text-white">Prompts In Queue But Not Submitting</h2>
+      </div>
+      <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+        Google Flow uses ProseMirror, a contenteditable rich text editor that ignores standard value injections. Flowmator uses Chrome DevTools Protocol (CDP) to dispatch native keystrokes.
+      </p>
+      <div class="p-4 rounded-2xl bg-graphite-900/80 border border-white/5 space-y-2 text-xs text-brandText-secondary">
+        <strong class="text-white block">Resolution Steps:</strong>
+        <ul class="list-disc list-inside space-y-1">
+          <li>Check if Chrome DevTools (F12) is already open on the Google Flow tab. Chrome only permits one debugger attachment per tab. Close F12 and restart the sequence.</li>
+          <li>Ensure the ProseMirror input box is visible on screen and not scrolled out of view.</li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Section 3 */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/10 space-y-4" id="tile-timeout">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold">3</div>
+        <h2 class="text-xl font-bold text-white">Generation Timed Out (90 Seconds)</h2>
+      </div>
+      <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+        If Google Flow experiences extreme server load, generating high-resolution images can take over 90 seconds.
+      </p>
+      <div class="p-4 rounded-2xl bg-graphite-900/80 border border-white/5 space-y-2 text-xs text-brandText-secondary">
+        <strong class="text-white block">Workaround:</strong>
+        <p>If Google Flow is regularly taking longer than 90s, temporarily switch to <strong>Turbo Interval Mode</strong> with Min Delay: 60s and Max Delay: 90s to accommodate peak cloud latency.</p>
+      </div>
+    </div>
+
+    {/* Section 4 */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/10 space-y-4" id="downloads">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold">4</div>
+        <h2 class="text-xl font-bold text-white">Auto-Downloads Not Saving to Disk</h2>
+      </div>
+      <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+        Flowmator uses <code class="text-white font-mono text-[11px]">chrome.downloads.download()</code> to save verified images. If images render on screen but do not save:
+      </p>
+      <div class="p-4 rounded-2xl bg-graphite-900/80 border border-white/5 space-y-2 text-xs text-brandText-secondary">
+        <ul class="list-disc list-inside space-y-1">
+          <li>Verify that the "Auto-Download Images" toggle is enabled in the Flowmator settings panel.</li>
+          <li>Check Chrome's download settings (<code class="text-aqua-liquid font-mono">chrome://settings/downloads</code>). If "Ask where to save each file before downloading" is enabled, Chrome will block silent automated downloads.</li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Section 5: DOM Shifts */}
+    <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/10 space-y-4" id="dom-change">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">5</div>
+        <h2 class="text-xl font-bold text-white">Google Flow Changed Its User Interface</h2>
+      </div>
+      <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+        Google regularly updates Google Flow's client-side build. Flowmator uses resilient multiple-query selectors (<code class="text-white font-mono text-[11px]">div.ProseMirror[contenteditable="true"]</code>, <code class="text-white font-mono text-[11px]">button.generate-icon-button</code>, <code class="text-white font-mono text-[11px]">button[aria-label="Start generation"]</code>). If Google significantly alters their DOM structure, submit a diagnostic ticket on our Support Center.
+      </p>
+      <a href="/support" class="text-xs font-semibold text-aqua-liquid hover:underline inline-flex items-center gap-1">
+        Open Diagnostic Ticket Form ➔
+      </a>
+    </div>
+
+  </div>
+</Layout>

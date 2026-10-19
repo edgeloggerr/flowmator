@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Sparkles, CheckCircle2, Shield, Zap, Terminal, Database, Volume2, ArrowRight } from 'lucide-react';
+
+const releases = [
+  {
+    version: "v1.0.0",
+    releaseDate: "October 2026",
+    title: "Initial Public Release — Flowmator Suite",
+    description: "The complete sequential AI prompt automation architecture for Google Flow AI with canvas verification, CDP hardware emulation, and storyboard continuity protection.",
+    highlights: [
+      {
+        category: "Automation Core",
+        items: [
+          "Chromium DevTools Protocol (CDP v1.3) input dispatch via chrome.debugger, generating authentic isTrusted: true keyboard and mouse events.",
+          "In-page scripting fallback (world: MAIN) directly accessing ProseMirror view transactions if CDP is unavailable.",
+          "Randomized human jitter (100ms–500ms delay) before dispatching Enter keystrokes to mimic natural user interaction."
+        ]
+      },
+      {
+        category: "Safe Sequence Mode",
+        items: [
+          "Pre-execution canvas state snapshot cataloging existing img[data-media-id] attributes and error tiles.",
+          "Active 90-second polling loop verifying newly rendered image elements (>150x150px).",
+          "Automated detection of <flow-error-tile> nodes with message extraction.",
+          "12-second rate-limit cool-off delay allowing Google cloud quotas to replenish before retrying.",
+          "Sequence Protector halting execution and sounding a Web Audio API synthesized sine-wave chime upon retry exhaustion."
+        ]
+      },
+      {
+        category: "Turbo Interval Mode",
+        items: [
+          "Configurable minimum (25s) and maximum (45s) interval sliders for rapid bulk prompt pushing.",
+          "Lightweight execution bypassing 90s DOM polling loops for high-volume concepting."
+        ]
+      },
+      {
+        category: "Interface & Control Center",
+        items: [
+          "Tactile Neumorphism design system with Soft Light and Dark Slate theme toggle.",
+          "Lock Screen overlay detecting whether the active tab matches labs.google or flow.google.",
+          "CSV file uploader and exporter for batch queue spreadsheets.",
+          "Inline queue editing with ✏️ prompt modifier and instant 🔄 retry actions.",
+          "Pro Control Center Dashboard featuring real-time session metrics and 3 curated storyboard templates (Noir, Cyberpunk, Anime)."
+        ]
+      }
+    ]
+  }
+];
+---
+
+<Layout
+  title="Flowmator Changelog | Releases, Updates & Engineering Log"
+  description="Official release history for Flowmator. Track changes, new automation capabilities, Chrome DevTools Protocol updates, and Google Flow compatibility patches."
+>
+  <div class="px-4 py-12 md:py-20 max-w-4xl mx-auto space-y-12">
+    
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-aqua-liquid">
+        Release Engineering Log
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Product Changelog
+      </h1>
+      <p class="text-sm text-brandText-secondary leading-relaxed">
+        Transparent version history reflecting verified codebase milestones and protocol updates.
+      </p>
+    </div>
+
+    {/* Timeline Container */}
+    <div class="space-y-10">
+      {releases.map((rel) => (
+        <div class="glass-tier2 rounded-3xl p-6 md:p-10 border border-white/15 space-y-8 relative overflow-hidden">
+          
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-white/10">
+            <div>
+              <div class="flex items-center gap-3">
+                <span class="text-2xl font-extrabold text-white font-mono">{rel.version}</span>
+                <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 text-xs font-mono font-medium">
+                  Stable Release
+                </span>
+              </div>
+              <h2 class="text-lg font-bold text-aqua-liquid mt-1">{rel.title}</h2>
+            </div>
+            <span class="text-xs text-brandText-tertiary font-mono">{rel.releaseDate}</span>
+          </div>
+
+          <p class="text-xs md:text-sm text-brandText-secondary leading-relaxed">
+            {rel.description}
+          </p>
+
+          <div class="space-y-6">
+            {rel.highlights.map((sec) => (
+              <div class="space-y-3">
+                <h3 class="text-xs font-mono uppercase tracking-wider text-violet-electric font-semibold">
+                  {sec.category}
+                </h3>
+                <ul class="space-y-2 text-xs text-brandText-secondary">
+                  {sec.items.map((it) => (
+                    <li class="flex items-start gap-2.5">
+                      <span class="w-1.5 h-1.5 rounded-full bg-aqua-liquid mt-1.5 shrink-0" />
+                      <span class="leading-relaxed">{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</Layout>

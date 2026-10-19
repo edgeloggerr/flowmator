@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DocumentationSearch from '../../components/DocumentationSearch';
+import { BookOpen, Shield, Zap, Wrench, Database, HelpCircle, ArrowRight } from 'lucide-react';
+---
+
+<Layout
+  title="Flowmator Documentation Hub | Guides, Architecture & Manuals"
+  description="Comprehensive documentation for Flowmator. Learn how to configure Safe Sequence Mode, Turbo Interval Mode, CSV prompt batching, rate-limit recovery, and troubleshooting."
+>
+  <div class="px-4 py-12 md:py-20 max-w-5xl mx-auto space-y-16">
+    
+    {/* Page Title */}
+    <div class="text-center space-y-4 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-tier3 text-xs font-semibold uppercase tracking-wider text-aqua-liquid">
+        Documentation Portal
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Flowmator Documentation Hub
+      </h1>
+      <p class="text-sm sm:text-base text-brandText-secondary leading-relaxed">
+        Everything you need to master bulk sequential prompt automation in Google Flow AI.
+      </p>
+    </div>
+
+    {/* Live Search Component */}
+    <div>
+      <DocumentationSearch client:load />
+    </div>
+
+    {/* Documentation Category Cards */}
+    <div class="space-y-6">
+      <h2 class="text-xl font-bold text-white">Documentation Categories</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Category 1: Execution Engine */}
+        <div class="glass-tier2 rounded-3xl p-6 border border-white/10 space-y-4">
+          <div class="p-2.5 rounded-xl bg-violet-600/20 text-violet-300 w-fit">
+            <Shield className="w-5 h-5" />
+          </div>
+          <h3 class="text-lg font-bold text-white">Execution Engines</h3>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            Deep architectural analysis of Safe Sequence Mode vs Turbo Interval Mode, DOM polling intervals, and canvas verification.
+          </p>
+          <ul class="space-y-2 text-xs pt-1 border-t border-white/5">
+            <li>
+              <a href="/documentation/safe-sequence-mode" class="text-aqua-liquid hover:underline flex items-center justify-between">
+                <span>Safe Sequence Mode Guide</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </li>
+            <li>
+              <a href="/documentation/turbo-mode" class="text-aqua-liquid hover:underline flex items-center justify-between">
+                <span>Turbo Interval Mode Guide</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Category 2: Troubleshooting & Diagnostics */}
+        <div class="glass-tier2 rounded-3xl p-6 border border-white/10 space-y-4">
+          <div class="p-2.5 rounded-xl bg-red-500/20 text-red-300 w-fit">
+            <Wrench className="w-5 h-5" />
+          </div>
+          <h3 class="text-lg font-bold text-white">Troubleshooting</h3>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            Detailed fixes for tab detection lockouts, ProseMirror rich-text cursor issues, 90-second timeouts, and download interruptions.
+          </p>
+          <ul class="space-y-2 text-xs pt-1 border-t border-white/5">
+            <li>
+              <a href="/documentation/troubleshooting" class="text-aqua-liquid hover:underline flex items-center justify-between">
+                <span>Complete Troubleshooting Guide</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </li>
+            <li>
+              <a href="/support" class="text-aqua-liquid hover:underline flex items-center justify-between">
+                <span>Interactive Diagnostic Assistant</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Category 3: Setup & Management */}
+        <div class="glass-tier2 rounded-3xl p-6 border border-white/10 space-y-4">
+          <div class="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-300 w-fit">
+            <Database className="w-5 h-5" />
+          </div>
+          <h3 class="text-lg font-bold text-white">Setup & Queueing</h3>
+          <p class="text-xs text-brandText-secondary leading-relaxed">
+            Unpacked installation in Chrome, CSV spreadsheet queue formatting, inline prompt editing, and storage architecture.
+          </p>
+          <ul class="space-y-2 text-xs pt-1 border-t border-white/5">
+            <li>
+              <a href="/setup" class="text-aqua-liquid hover:underline flex items-center justify-between">
+                <span>Installation Walkthrough</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </li>
+            <li>
+              <a href="/features#csv-import" class="text-aqua-liquid hover:underline flex items-center justify-between">
+                <span>CSV Batch Formatting</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</Layout>
