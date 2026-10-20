@@ -1,11 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Download, Terminal, CheckCircle2, AlertTriangle, Shield, ArrowRight, Copy } from 'lucide-react';
+import { Download, Shield, ArrowRight, Search, Star, MessageSquare } from 'lucide-react';
+
+const extensionId = "angiaegmoljbdkhkjkmjligbodgohfpm";
+const storeUrl = `https://chromewebstore.google.com/detail/${extensionId}?utm_source=item-share-cb`;
+const reviewUrl = `https://chromewebstore.google.com/detail/${extensionId}/reviews`;
 ---
 
 <Layout
   title="Installation & Setup Guide | Flowmator Chrome Extension"
-  description="Step-by-step installation instructions for Flowmator. Learn how to load the unpacked extension in Chrome Developer Mode and run your first verified Google Flow prompt queue."
+  description="Step-by-step installation instructions for Flowmator. Install the official extension directly from the Chrome Web Store."
 >
   <div class="px-4 py-12 md:py-20 max-w-4xl mx-auto space-y-14">
     
@@ -18,60 +22,61 @@ import { Download, Terminal, CheckCircle2, AlertTriangle, Shield, ArrowRight, Co
         Install & Run Flowmator
       </h1>
       <p class="text-sm sm:text-base text-brandText-secondary max-w-xl mx-auto leading-relaxed">
-        Follow our quick walkthrough to load the extension in Chrome and launch your first verified prompt queue in under 3 minutes.
+        Follow our quick walkthrough to install the extension from the Chrome Web Store and launch your first verified prompt queue in under 3 minutes.
       </p>
     </div>
 
-    {/* Installation Path Cards */}
+    {/* Installation Content */}
     <div class="space-y-10">
       
-      {/* Path B: Developer Unpacked Mode (Primary for local build) */}
-      <div class="glass-tier2 rounded-3xl p-6 md:p-10 border border-white/15 space-y-6">
-        <div class="flex items-center justify-between pb-4 border-b border-white/10">
-          <div class="flex items-center gap-3">
-            <div class="p-2.5 rounded-xl bg-violet-600/20 text-aqua-liquid border border-violet-500/30">
-              <Terminal className="w-5 h-5" />
+      {/* 1. Direct Chrome Web Store Installation */}
+      <div class="glass-tier2 rounded-3xl p-6 md:p-10 border border-violet-500/30 space-y-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-32 bg-violet-600/10 blur-3xl rounded-full"></div>
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+          <div class="space-y-2">
+            <div class="flex items-center gap-3">
+              <div class="p-2.5 rounded-xl bg-violet-600/20 text-violet-400 border border-violet-500/30">
+                <Download className="w-5 h-5" />
+              </div>
+              <h2 class="text-xl font-bold text-white">Direct Installation (Recommended)</h2>
             </div>
-            <div>
-              <span class="text-[11px] font-mono text-aqua-liquid uppercase">Standard Method</span>
-              <h2 class="text-xl font-bold text-white">Load Unpacked Extension (Developer Mode)</h2>
-            </div>
+            <p class="text-sm text-brandText-secondary max-w-md">
+              The fastest and easiest way to get started. Install the official, verified Flowmator extension directly from the Chrome Web Store in one click.
+            </p>
           </div>
-          <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-mono">
-            Active v1.0.0
-          </span>
+          <a 
+            href={storeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold transition-all duration-200 shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_25px_rgba(124,58,237,0.5)] whitespace-nowrap"
+          >
+            Add to Chrome
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
+      </div>
 
+      {/* 2. Manual Search Guide */}
+      <div class="glass-tier2 rounded-3xl p-6 md:p-8 border border-white/15 space-y-6">
+        <div class="flex items-center gap-3 pb-4 border-b border-white/10">
+          <div class="p-2.5 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30">
+            <Search className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white">Alternative: Manual Store Search</h3>
+            <p class="text-xs text-brandText-secondary">If you prefer to find us yourself</p>
+          </div>
+        </div>
+        
         <ol class="space-y-4">
           {[
-            {
-              num: "1",
-              title: "Obtain the Flowmator Folder",
-              desc: "Locate the flow-automator directory containing manifest.json on your computer."
-            },
-            {
-              num: "2",
-              title: "Open Chrome Extensions Manager",
-              desc: "Open Google Chrome and navigate to chrome://extensions in the address bar."
-            },
-            {
-              num: "3",
-              title: "Enable Developer Mode",
-              desc: "Toggle the Developer mode switch located in the upper-right corner of the Extensions page."
-            },
-            {
-              num: "4",
-              title: "Click 'Load unpacked'",
-              desc: "Click the 'Load unpacked' button in the top-left toolbar and select the flow-automator folder."
-            },
-            {
-              num: "5",
-              title: "Pin Flowmator to Toolbar",
-              desc: "Click the puzzle-piece icon in your Chrome toolbar and pin Flowmator for one-click access."
-            }
+            { num: "1", title: "Open the Chrome Web Store", desc: "Navigate to chromewebstore.google.com in your browser." },
+            { num: "2", title: "Search for Flowmator", desc: "Type 'Flowmator' into the top search bar and hit Enter." },
+            { num: "3", title: "Locate the Extension", desc: "Look for our official extension logo in the search results." },
+            { num: "4", title: "Install", desc: "Click into the extension page and click the blue 'Add to Chrome' button." }
           ].map((step) => (
             <li class="flex items-start gap-3 text-xs md:text-sm text-brandText-secondary">
-              <span class="w-6 h-6 rounded-full bg-violet-600/30 text-white font-mono text-xs font-bold flex items-center justify-center shrink-0 border border-violet-400/30 mt-0.5">
+              <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-300 font-mono text-xs font-bold flex items-center justify-center shrink-0 border border-blue-400/30 mt-0.5">
                 {step.num}
               </span>
               <div>
@@ -81,25 +86,6 @@ import { Download, Terminal, CheckCircle2, AlertTriangle, Shield, ArrowRight, Co
             </li>
           ))}
         </ol>
-
-        <div class="p-4 rounded-2xl bg-graphite-900/80 border border-white/10 space-y-2">
-          <div class="text-xs font-semibold text-white">Copyable Chrome Address:</div>
-          <div class="flex items-center justify-between p-2 rounded-xl bg-black/40 font-mono text-xs text-aqua-liquid">
-            <span>chrome://extensions</span>
-            <span class="text-[10px] text-brandText-tertiary">Paste into address bar</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Path A: Published Chrome Web Store Notice */}
-      <div class="glass-tier3 rounded-3xl p-6 md:p-8 border border-white/10 space-y-3">
-        <div class="flex items-center gap-3">
-          <Download className="w-5 h-5 text-violet-electric" />
-          <h3 class="text-base font-bold text-white">Chrome Web Store Distribution</h3>
-        </div>
-        <p class="text-xs text-brandText-secondary leading-relaxed">
-          The public Chrome Web Store package is currently prepared under Manifest V3 guidelines. Until official store verification is published, developers and beta creators can run Flowmator locally via the unpacked instructions above with 100% feature parity.
-        </p>
       </div>
 
       {/* Permissions Breakdown in Plain English */}
@@ -145,6 +131,43 @@ import { Download, Terminal, CheckCircle2, AlertTriangle, Shield, ArrowRight, Co
           <li>Keep <strong class="text-white">Safe Sequence Mode</strong> selected and click <strong class="text-violet-electric">Start Flowmator Sequence</strong>.</li>
           <li>Watch the side panel status transition from <em>Generating</em> to <em>Verifying</em> to <em>Completed</em> as Google Flow finishes rendering.</li>
         </ol>
+      </div>
+
+      {/* Review CTA Block */}
+      <div class="glass-tier3 rounded-3xl p-8 md:p-12 border border-yellow-500/30 text-center space-y-6 bg-gradient-to-b from-yellow-500/5 to-transparent">
+        <div class="space-y-3">
+          <h3 class="text-2xl font-bold text-white">Loving Flowmator?</h3>
+          <p class="text-sm text-brandText-secondary max-w-md mx-auto">
+            Your reviews help us grow and keep building awesome automation tools. Let the community know what you think!
+          </p>
+        </div>
+
+        {/* CSS-Only Hover-Fill Stars (Reversed Array + flex-row-reverse + peer) */}
+        <div class="flex items-center justify-center gap-2 flex-row-reverse">
+          {[5, 4, 3, 2, 1].map((star) => (
+            <a 
+              href={reviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="peer text-brandText-tertiary hover:text-yellow-400 peer-hover:text-yellow-400 transition-colors duration-200 cursor-pointer"
+              title={`Rate ${star} Stars`}
+            >
+              <Star className="w-10 h-10 fill-current" />
+            </a>
+          ))}
+        </div>
+
+        <div class="pt-2">
+          <a 
+            href={reviewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-white font-medium border border-white/10 transition-colors"
+          >
+            <MessageSquare className="w-4 h-4" />
+            Write a Review
+          </a>
+        </div>
       </div>
 
     </div>
