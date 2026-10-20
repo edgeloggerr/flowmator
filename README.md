@@ -19,7 +19,7 @@ Built with **Astro**, **React**, **TypeScript**, **Tailwind CSS v3**, and **MDX 
   - `SupportForm.tsx`: Validated diagnostic report generator with honest frontend status.
   - `StoryboardCarousel.tsx`: Interactive 4-shot storyboard viewer with prompt chain copier.
 - **Programmatic SEO (pSEO), AEO & GEO:**
-  - Automated XML sitemap generation (`/sitemap.xml`) indexing all static pages, categories, and published articles.
+  - Automated XML sitemap generation (`/sitemap-index.xml` & `/sitemap-0.xml`) indexing all static pages, categories, and published articles with dynamic lastmod dates.
   - LLM discovery endpoints (`/llms.txt` and `/llms-full.txt`) adhering to modern AI citation standards.
   - Rich JSON-LD schemas: `SoftwareApplication`, `TechArticle`, `BreadcrumbList`, `WebSite`, `FAQPage`.
   - Answer-first editorial structure with direct answer summaries on all guides.
@@ -57,8 +57,7 @@ flowmator-web/
 │   │   ├── terms.astro        # /terms
 │   │   ├── llms.txt.ts        # Dynamic /llms.txt endpoint
 │   │   ├── llms-full.txt.ts   # Dynamic /llms-full.txt endpoint
-│   │   ├── robots.txt.ts      # Dynamic /robots.txt endpoint
-│   │   └── sitemap.xml.ts     # Dynamic /sitemap.xml generator
+│   │   └── robots.txt.ts      # Dynamic /robots.txt endpoint
 │   ├── styles/
 │   │   └── global.css         # Liquid Glass CSS material tiers and tokens
 │   └── utils/
