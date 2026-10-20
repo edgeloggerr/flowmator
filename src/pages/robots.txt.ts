@@ -29,7 +29,7 @@ User-agent: Google-Extended
 Allow: /
 
 # Sitemap Location
-Sitemap: ${baseUrl}/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-index.xml
 `;
 
   return new Response(content, {
