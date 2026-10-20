@@ -33,13 +33,13 @@ export const SITE_CONFIG: SiteConfig = {
   fullName: 'Flowmator — Bulk Flow AI Prompt Automator',
   tagline: 'Your prompts. In perfect sequence.',
   description: 'Automate bulk prompt workflows in Google Flow AI with intelligent sequencing, DOM-level result verification, automatic rate-limit cool-off delays, and storyboard continuity safeguards.',
-  url: 'https://flowmator.dev', // Production canonical domain
+  url: 'https://flowmator.edgecors.com', // Production canonical domain
   defaultOgImage: '/icons/icon128.png',
   locale: 'en_US',
   publisher: {
     name: 'Flowmator Studio',
     type: 'Organization',
-    url: 'https://flowmator.dev'
+    url: 'https://flowmator.edgecors.com'
   },
   social: {
     twitter: '@flowmator',

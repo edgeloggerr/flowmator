@@ -122,7 +122,7 @@ relatedSlugs:
 Before launching on a public production domain:
 
 1. **Set Canonical Domain in `src/config/site.ts`:**
-   Change `url: 'https://flowmator.dev'` to your verified custom domain.
+   Configured to verified domain: `https://flowmator.edgecors.com`.
 2. **Set Official Chrome Web Store URL (when published):**
    Update `extension.storeListingUrl` in `src/config/site.ts`.
 3. **Legal Entity Review:**

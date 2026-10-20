@@ -47,7 +47,7 @@ const blogMeta = getBlogMetadataMap();
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://flowmator.dev',
+  site: 'https://flowmator.edgecors.com',
   redirects: {
     '/sitemap.xml': '/sitemap-index.xml'
   },
